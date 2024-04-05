@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,18 @@ export class AppComponent {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
+  async ngOnInit() {
+    // Show the splash for an indefinite amount of time:
+    await SplashScreen.show({
+      autoHide: false,
+    });
+
+    this.router.events.subscribe(async (event) => {
       if (event instanceof NavigationEnd) {
         this.showMenu = event.urlAfterRedirects === '/home';
+
+        // Hide the splash (you should do this on app launch)
+        await SplashScreen.hide();
       }
     });
   }
