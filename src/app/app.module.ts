@@ -17,6 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { AuthModule } from './auth-component/auth.module';
 
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -34,7 +38,10 @@ import { AuthModule } from './auth-component/auth.module';
     DescproductPageModule, // Asegúrate de que ReactiveFormsModule esté en la lista de imports
     PerfilPageModule,
     ProductosPageModule,
-    AuthModule // Añade AuthModule aquí
+    AuthModule, // Añade AuthModule aquí
+    CardModule,
+    ButtonModule,
+    CarouselModule
 
 
 

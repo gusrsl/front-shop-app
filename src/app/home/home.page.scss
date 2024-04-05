@@ -43,3 +43,40 @@ ion-button:hover {
   height: auto;
   object-fit: contain;
 }
+
+.my-button {
+  /* Agrega tus estilos personalizados aquí */
+  background-color: #4CAF50; /* Por ejemplo, cambia el color de fondo */
+  color: white; /* Cambia el color del texto */
+  border: none; /* Elimina el borde */
+  padding: 15px 32px; /* Añade padding */
+  text-align: center; /* Centra el texto */
+  text-decoration: none; /* Elimina la decoración del texto */
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s; /* Añade una transición */
+  cursor: pointer; /* Cambia el cursor */
+}
+
+.my-button:hover {
+  background-color: #45a049; /* Cambia el color de fondo al pasar el mouse */
+}
+
+
+:host ::ng-deep {
+  .product-item {
+      .product-item-content {
+          border: 1px solid var(--surface-d);
+          border-radius: 3px;
+          margin: .3rem;
+          text-align: center;
+          padding: 2rem 0;
+      }
+  
+      .product-image {
+          width: 50%;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+      }
+  }
+}

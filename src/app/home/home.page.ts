@@ -12,6 +12,30 @@ export class HomePage implements OnInit, AfterViewInit {
 
   isLoggedIn: boolean | undefined;
   images = ['assets/slider1.png'];
+  products = [
+    { name: 'Product 1', status: 'INSTOCK' },
+    { name: 'Product 2', status: 'LOWSTOCK' },
+    { name: 'Product 3', status: 'OUTOFSTOCK' },
+    // Añade más productos aquí
+  ];
+  responsiveOptions = [
+    {
+      breakpoint: '1199px',
+      numVisible: 1,
+      numScroll: 1
+    },
+    {
+      breakpoint: '991px',
+      numVisible: 2,
+      numScroll: 1
+    },
+    {
+      breakpoint: '767px',
+      numVisible: 1,
+      numScroll: 1
+    }
+  ];
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -19,6 +43,19 @@ export class HomePage implements OnInit, AfterViewInit {
       this.isLoggedIn = loggedIn;
     });
   }
+
+getSeverity(status: string): "success" | "warning" | "danger" {
+  switch (status) {
+    case 'INSTOCK':
+      return 'success';
+    case 'LOWSTOCK':
+      return 'warning';
+    case 'OUTOFSTOCK':
+      return 'danger';
+    default:
+      return 'danger'; // valor por defecto
+  }
+}
 
   ngAfterViewInit() {
     const swiper = new Swiper('.swiper-container', {
