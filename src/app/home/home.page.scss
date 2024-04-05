@@ -30,3 +30,16 @@ ion-button:hover {
   width: 100%;
   height: auto;
 }
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.swiper-slide img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}

@@ -1,5 +1,19 @@
-
 <ion-content id="main-content">
+  <!-- Agrega esto para el carrusel de Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let image of images">
+        <img [src]="image" alt="Slide image">
+      </div>
+    </div>
+
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <!-- Fin del carrusel de Swiper -->
 
   <div *ngIf="isLoggedIn; else notLoggedIn">
     <!-- Contenido para usuarios conectados -->
@@ -25,9 +39,3 @@
       </ion-card-header>
       <ion-card-content>
         <p>Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
-        <ion-button expand="full" routerLink="/login">Iniciar sesión</ion-button>
-        <ion-button expand="full" routerLink="/register">Registrarse</ion-button>
-      </ion-card-content>
-    </ion-card>
-  </ng-template>
-</ion-content>
