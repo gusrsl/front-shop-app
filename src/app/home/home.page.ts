@@ -11,12 +11,12 @@ import { Swiper } from 'swiper';
 export class HomePage implements OnInit, AfterViewInit {
 
   isLoggedIn: boolean | undefined;
+
   images = ['assets/slider1.png'];
   products = [
-    { name: 'Product 1', status: 'INSTOCK' },
-    { name: 'Product 2', status: 'LOWSTOCK' },
-    { name: 'Product 3', status: 'OUTOFSTOCK' },
-    // Añade más productos aquí
+    {image: 'product1.png', name: 'Product 1', price: 100, inventoryStatus: 'In Stock'},
+    {image: 'product2.png', name: 'Product 2', price: 200, inventoryStatus: 'Low Stock'},
+    {image: 'product3.png', name: 'Product 3', price: 300, inventoryStatus: 'Out of Stock'}
   ];
   responsiveOptions = [
     {
@@ -57,30 +57,17 @@ getSeverity(status: string): "success" | "warning" | "danger" {
   }
 }
 
-  ngAfterViewInit() {
-    const swiper = new Swiper('.swiper-container', {
-      // Default parameters
-      slidesPerView: 1,
-      spaceBetween: 10,
-
-      // Responsive breakpoints
-      breakpoints: {
-        // when window width is >= 320px
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
-        // when window width is >= 480px
-        480: {
-          slidesPerView: 2,
-          spaceBetween: 30
-        },
-        // when window width is >= 640px
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 40
-        }
-      }
-    });
-  }
+ngAfterViewInit() {
+  new Swiper('.swiper-container', {
+    direction: 'horizontal',
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  });
+}
 }
