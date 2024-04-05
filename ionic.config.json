@@ -1,0 +1,8 @@
+{
+  "name": "front-shop-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "275d9e2a"
+}
