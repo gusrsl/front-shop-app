@@ -1,0 +1,208 @@
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  padding-left: 20px;
+  margin-top: 70px;
+  margin-bottom: -60px;
+
+  @media screen and (min-width: 600px) {
+    font-size: 40px;
+    padding-left: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    font-size: 48px;
+    padding-left: 60px;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.container h1,
+.container h2,
+.container p {
+  animation-name: fadeInUp;
+  animation-duration: 0.75s; // Duración de la animación reducida a 0.75 segundos
+  animation-fill-mode: both;
+}
+
+.container h1 {
+  animation-delay: 0.25s; // Retraso de la animación reducido a 0.25 segundos
+}
+
+.container h2 {
+  animation-delay: 0.5s; // Retraso de la animación reducido a 0.5 segundos
+}
+
+.container p {
+  animation-delay: 0.75s; // Retraso de la animación reducido a 0.75 segundos
+}
+
+.para {
+  font-size: 22px;
+  font-weight: 500;
+  padding-left: 20px;
+  margin-bottom: 70px;
+  color: #A6ABB1;
+
+  @media screen and (min-width: 600px) {
+    font-size: 26px;
+    padding-left: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    font-size: 30px;
+    padding-left: 60px;
+  }
+}
+
+.input-item {
+  padding-left: 20px;
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #e2e2e2;
+  height: 80px;
+
+  ion-input {
+    margin-top: -12px;
+  }
+
+  @media screen and (min-width: 600px) {
+    padding-left: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding-left: 60px;
+  }
+}
+
+ion-grid {
+  margin: 20px; // Ajusta este valor según tus necesidades
+}
+
+.container {
+  margin: 50px; // Ajusta este valor según tus necesidades
+
+  @media (max-width: 768px) { // 768px es un punto de corte común para tabletas y teléfonos
+    margin: 0; // Elimina el margen en dispositivos con un ancho de pantalla de 768px o menos
+  }
+}
+.forget-text {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  text-align: end;
+  margin-bottom: -10px;
+  padding-right: 20px;
+
+  @media screen and (min-width: 600px) {
+    padding-right: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding-right: 60px;
+  }
+}
+
+.card-image {
+  border-radius: 15px; // Redondea los bordes de la imagen
+  display: block; // Hace que la imagen sea un bloque para poder centrarla
+  margin-left: auto; // Centra la imagen horizontalmente
+  margin-right: auto; // Centra la imagen horizontalmente
+  object-fit: cover; // Asegura que la imagen cubra todo el espacio disponible sin distorsionarse
+}
+
+.form-card {
+  border-radius: 0;
+  padding: 0;
+  margin-top: 0;
+
+  @media screen and (min-width: 1024px) {
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+}
+
+.form-content {
+  display: block;
+}
+
+.login-button {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  --border-radius: 12px;
+  margin-top: 60px;
+  --box-shadow: none;
+
+  @media screen and (min-width: 600px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+.google-button {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  --border-radius: 12px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  --box-shadow: none;
+
+  @media screen and (min-width: 600px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+.signup-text {
+  a {
+    text-decoration: none;
+    color: var(--ion-color-primary);
+  }
+  padding-right: 20px;
+  text-align: end;
+
+  @media screen and (min-width: 600px) {
+    padding-right: 40px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding-right: 60px;
+  }
+}
+
+ion-footer {
+  display: block;
+  // position: relative;
+  -ms-flex-order: 1;
+  order: 1;
+  width: 100%;
+  z-index: 10;
+}
+
+.copyright {
+  text-align: center;
+}

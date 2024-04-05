@@ -1,0 +1,33 @@
+
+<ion-content id="main-content">
+
+  <div *ngIf="isLoggedIn; else notLoggedIn">
+    <!-- Contenido para usuarios conectados -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Bienvenido de nuevo!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Aquí puedes ver tus productos favoritos y las últimas ofertas.</p>
+        <!-- Lista de productos -->
+        <ion-list>
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #notLoggedIn>
+    <!-- Contenido para usuarios no conectados -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Bienvenido a nuestra tienda!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
+        <ion-button expand="full" routerLink="/login">Iniciar sesión</ion-button>
+        <ion-button expand="full" routerLink="/register">Registrarse</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>

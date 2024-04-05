@@ -1,0 +1,36 @@
+<ion-menu side="start" contentId="main-content" type="overlay">
+  <ion-header>
+    <ion-toolbar class="menu-header">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6" class="ion-text-center">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" alt="User Image" class="fade-in">
+          </ion-col>
+          <ion-col size="6" class="ion-text-center">
+            <p class="fade-in">Gustavo Rodriguez</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list class="menu-list">
+      <ion-menu-toggle auto-hide="false">
+        <ion-item class="menu-item slide-in" (click)="navigateTo('/productos')">
+          Productos
+        </ion-item>
+        <ion-item class="menu-item slide-in" (click)="navigateTo('/perfil')">
+          Cuenta
+        </ion-item>
+        <ion-item class="menu-item slide-in" (click)="navigateTo('/login')">
+          Iniciar sesion
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-item>
+        <ion-toggle [(ngModel)]="themeToggle" (ionChange)="toggleChange($event); $event.stopPropagation()" justify="space-between"
+          >Dark Mode</ion-toggle
+        >
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

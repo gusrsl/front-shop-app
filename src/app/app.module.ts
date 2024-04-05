@@ -6,10 +6,39 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ComponentsModule } from './components/components.module';
+import { HomePageModule } from './home/home.module';
+import { AuthComponent } from './auth-component/auth-component.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DescproductPageModule } from './pages/descproduct/descproduct.module';
+import { PerfilPageModule } from './pages/perfil/perfil.module';
+import { ProductosPageModule } from './pages/productos/productos.module';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { AuthModule } from './auth-component/auth.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot(),  // añade esta línea
+    // Agrega el ComponentsModule aquí
+    ComponentsModule,
+    HomePageModule,
+    ReactiveFormsModule,
+    DescproductPageModule, // Asegúrate de que ReactiveFormsModule esté en la lista de imports
+    PerfilPageModule,
+    ProductosPageModule,
+    AuthModule // Añade AuthModule aquí
+
+
+
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

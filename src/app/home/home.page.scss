@@ -1,0 +1,32 @@
+ion-button {
+  transition: transform 0.3s ease-in-out;
+}
+
+ion-button:hover {
+  transform: scale(1.1);
+}
+
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.subpages {
+  display: flex;
+  gap: 10px;
+}
+
+.logo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+
+.slide-image {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,176 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-content class="container" [fullscreen]="true">
+<ion-grid>
+  <ion-row>
+    <!-- Columna de inicio de sesión -->
+    <ion-col size="12" size-md="6">
+      <!-- Login Page -->
+      <div class="container"  *ngIf="screen == 'signin'">
+        <h1 class="heading">👋 Bienvenido a Darmacio Shop<br><br></h1>
+        <p class="para">Ingrese para continuar!</p>
+        <ion-card class="form-card">
+
+          <div class="form-content">
+          <form [formGroup]="loginData">
+            <ion-item lines="none" class="ion-item">
+              <fieldset  class="input-item">
+                <legend>Nombre de usuario</legend>
+                <ion-input formControlName="nombreUsuario" type="text" placeholder="Usuario"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset style="background: transparent;" class="input-item">
+                <legend>Password</legend>
+                <ion-item style="padding: 0; margin: 0;">
+                  <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="contrasena" placeholder="*******"></ion-input>
+                  <ion-button fill="clear" slot="end" (click)="toggleShowPassword()">
+                    <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </fieldset>
+            </ion-item>
+            <p class="forget-text"><a (click)="change('forget')">Olvidaste tu contraseña?</a></p>
+            <p class="signup-text">Soy un nuevo usuario&nbsp;<a (click)="change('signup')">Registrarme?</a></p>
+            <ion-button class="login-button" (click)="login()" expand="block">Login</ion-button>
+            <ion-button class="google-button" expand="block" color="light"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Google Signin</ion-button>
+          </form>
+          </div>
+        </ion-card>
+      </div>
+
+
+<!-- Sign up page -->
+<div class="container"  *ngIf="screen == 'signup'">
+  <h1 class="heading">🚀 Crea tu Cuenta!<br><br></h1>
+  <p class="para">Registrate para comenzar!</p>
+  <ion-card class="form-card">
+    <br>
+    <div class="form-content">
+    <form [formGroup]="registerData">
+      <ion-item lines="none" class="ion-item">
+        <fieldset  class="input-item">
+          <legend>Nombre</legend>
+          <ion-input formControlName="nombre" type="text" placeholder="John"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset  class="input-item">
+          <legend>Apellido</legend>
+          <ion-input formControlName="apellido" type="text" placeholder="Doe"></ion-input>
+        </fieldset>
+      </ion-item>
+      <!-- Agrega los campos restantes aquí -->
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Nombre de usuario</legend>
+          <ion-input formControlName="nombreUsuario" type="text" placeholder="johndoe"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Correo</legend>
+          <ion-input formControlName="correo" type="email" placeholder="johndoe@example.com"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Dirección</legend>
+          <ion-input formControlName="direccion" type="text" placeholder="123 Main St"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Ciudad</legend>
+          <ion-input formControlName="ciudad" type="text" placeholder="New York"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>País</legend>
+          <ion-input formControlName="pais" type="text" placeholder="USA"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Código Postal</legend>
+          <ion-input formControlName="codigoPostal" type="text" placeholder="10001"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Teléfono</legend>
+          <ion-input formControlName="telefono" type="tel" placeholder="123-456-7890"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+          <fieldset style="background: transparent;" class="input-item">
+            <legend>Password</legend>
+            <ion-item style="padding: 0; margin: 0;">
+              <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="contrasena" placeholder="*******"></ion-input>
+              <ion-button fill="clear" slot="end" (click)="toggleShowPassword()">
+                <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </fieldset>
+      </ion-item>
+      <p class="signup-text">Ya soy un usuario?&nbsp;<a (click)="change('signin')">Iniciar sesion</a></p>
+      <ion-button class="login-button" (click)="register()" expand="block">Sign Up</ion-button>
+      <ion-button class="google-button" expand="block" color="light"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Google Signin</ion-button>
+    </form>
+    </div>
+  </ion-card>
+</div>
+
+
+    </ion-col>
+
+    <!-- Columna de información de la tienda -->
+    <ion-col size="12" size-md="6">
+
+      <div class="container">
+
+        <ion-card class="form-card">
+          <br><br>
+          <img class="card-image" src="http://darmacionline.com/ecommercecpanel/vistas/img/plantilla/logo.jpg" alt="Imagen de Darmacio"> <!-- Asegúrate de reemplazar 'ruta/a/tu/imagen.jpg' con la ruta a tu imagen -->
+          <br><br><br>
+          <ion-card-content>
+            <h1>Bienvenido a Darmacio</h1>
+            <p style="text-align: justify;">Darmacio es una tienda de zapatos deportivos líder en el mercado, conocida por su compromiso con la calidad y el confort. Ofrecemos una amplia gama de zapatos deportivos para todas las edades y actividades.</p>
+            <br>
+            <h2>Nuestra Misión</h2>
+            <p style="text-align: justify;">Nuestra misión es proporcionar a nuestros clientes zapatos deportivos de alta calidad que combinen funcionalidad y estilo. Creemos en el poder del deporte para cambiar vidas, y estamos aquí para apoyarte en cada paso del camino.</p>
+            <br>
+            <h2>Nuestros Productos</h2>
+            <p style="text-align: justify;">Ofrecemos una variedad de zapatos deportivos para correr, caminar, entrenar y más. Todos nuestros productos están diseñados con la última tecnología para proporcionar el máximo confort y rendimiento.</p>
+            <br>
+            <h2>Contacto</h2>
+            <p style="text-align: justify;">¿Tienes alguna pregunta o comentario? No dudes en contactarnos a través de nuestro formulario de contacto o llamarnos al +1 234 567 890.</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<!-- Forget password page -->
+<div class="container"  *ngIf="screen == 'forget'">
+  <h1 class="heading">Forget Password?<br><br></h1>
+  <p class="para">Enter email to reset</p>
+  <ion-item lines="none" class="ion-item">
+    <fieldset  class="input-item">
+      <legend>Email Id</legend>
+      <ion-input type="email" placeholder="name@domain.com"></ion-input>
+    </fieldset>
+  </ion-item>
+  <p class="signup-text">Rememberd Password&nbsp;<a (click)="change('signin')">Sign In?</a></p>
+  <ion-button class="login-button" expand="block">Reset Password</ion-button>
+</div>
+
+
+</ion-content>
+<ion-footer color="white">
+  <ion-toolbar>
+    <p class="copyright">Derechos reservados by&nbsp;<a>Gustavo Rodriguez</a></p>
+  </ion-toolbar>
+</ion-footer>
