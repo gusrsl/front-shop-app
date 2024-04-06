@@ -1,19 +1,10 @@
 <ion-content id="main-content">
-  <!-- Agrega esto para el carrusel de Swiper -->
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let image of images">
+    <swiper-container>
+      <swiper-slide *ngFor="let image of images">
         <img [src]="image" alt="Slide image">
-      </div>
-    </div>
+      </swiper-slide>
+    </swiper-container>
 
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Navigation -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-  <!-- Fin del carrusel de Swiper -->
 
   <div *ngIf="isLoggedIn; else notLoggedIn">
     <!-- Contenido para usuarios conectados -->
@@ -32,49 +23,19 @@
     <br>
   </div>
 
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let product of products">
-        <ion-card>
-          <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" />
-          <ion-card-content>
-            <h4>{{ product.name }}</h4>
-            <h6>{{ '$' + product.price }}</h6>
-            <p>{{ product.inventoryStatus }}</p>
-            <ion-button fill="clear" color="primary" slot="start">
-              <ion-icon slot="icon-only" name="search"></ion-icon>
-            </ion-button>
-            <ion-button fill="clear" color="secondary" slot="end">
-              <ion-icon slot="icon-only" name="star"></ion-icon>
-            </ion-button>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </div>
-  
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Navigation -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-
-
-
   <ion-grid>
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12" size-md="6" size-lg="4">
         <ion-card style="width: 360px;">
           <ion-card-header>
-            <ion-card-subtitle>Card Subheader</ion-card-subtitle>
-            <ion-card-title>Advanced Card</ion-card-title>
+            <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
+            <ion-card-title>Adidas</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            <img src="https://primefaces.org/cdn/primeng/images/usercard.png" alt="Card" />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-              quas!
+            <img src="https://gustavo-rodriguez.tech/imagenes_local/adidaslogos.jpg" alt="Card" />
+            <p style="  text-align: center;">
+              Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
             </p>
           </ion-card-content>
         </ion-card>
@@ -82,38 +43,36 @@
       <ion-col size="12" size-md="6" size-lg="4">
         <ion-card style="width: 360px;">
           <ion-card-header>
-            <ion-card-subtitle>Card Subheader</ion-card-subtitle>
-            <ion-card-title>Advanced Card</ion-card-title>
+            <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
+            <ion-card-title>Nike</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            <img src="https://primefaces.org/cdn/primeng/images/usercard.png" alt="Card" />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-              quas!
+            <img src="https://gustavo-rodriguez.tech/imagenes_local/nikelogo.jpeg" alt="Card" />
+            <p style="  text-align: center;">
+              Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
             </p>
           </ion-card-content>
-        </ion-card>    
+        </ion-card>
       </ion-col>
       <ion-col size="12" size-md="6" size-lg="4">
         <ion-card style="width: 360px;">
           <ion-card-header>
-            <ion-card-subtitle>Card Subheader</ion-card-subtitle>
-            <ion-card-title>Advanced Card</ion-card-title>
+            <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
+            <ion-card-title>Puma</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            <img src="https://primefaces.org/cdn/primeng/images/usercard.png" alt="Card" />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-              quas!
+            <img src="https://gustavo-rodriguez.tech/imagenes_local/pumalogo.png" alt="Card" />
+            <p style="  text-align: center;">
+              Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
             </p>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>        
-  
+  </ion-grid>
+
 
   <ng-template #notLoggedIn>
     <!-- Contenido para usuarios no conectados -->

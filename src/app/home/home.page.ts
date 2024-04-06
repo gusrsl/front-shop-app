@@ -12,7 +12,7 @@ export class HomePage implements OnInit, AfterViewInit {
 
   isLoggedIn: boolean | undefined;
 
-  images = ['assets/slider1.png'];
+  images = ['assets/slider1.png', 'assets/slider1.png'];
   products = [
     {image: 'product1.png', name: 'Product 1', price: 100, inventoryStatus: 'In Stock'},
     {image: 'product2.png', name: 'Product 2', price: 200, inventoryStatus: 'Low Stock'},
@@ -58,16 +58,16 @@ getSeverity(status: string): "success" | "warning" | "danger" {
 }
 
 ngAfterViewInit() {
-  new Swiper('.swiper-container', {
-    direction: 'horizontal',
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  });
-}
+    new Swiper('.swiper-container', {
+      direction: 'horizontal',
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+  }
 }
