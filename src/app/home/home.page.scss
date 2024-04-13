@@ -1,30 +1,29 @@
-ion-button {
+ion-button, .brand-card, .content-container {
   transition: transform 0.3s ease-in-out;
 }
 
-ion-button:hover {
+ion-button:hover, .brand-card:hover, .content-container:hover {
   transform: scale(1.1);
 }
 
+.header-content, .subpages, .logo, swiper-slide {
+  display: flex;
+}
 
 .header-content {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
 .subpages {
-  display: flex;
   gap: 10px;
 }
 
 .logo {
   flex-grow: 1;
-  display: flex;
   justify-content: center;
 }
-
 
 .slide-image {
   width: 100%;
@@ -45,45 +44,91 @@ ion-button:hover {
 }
 
 swiper-slide {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .my-button {
-  /* Agrega tus estilos personalizados aquí */
-  background-color: #4CAF50; /* Por ejemplo, cambia el color de fondo */
-  color: white; /* Cambia el color del texto */
-  border: none; /* Elimina el borde */
-  padding: 15px 32px; /* Añade padding */
-  text-align: center; /* Centra el texto */
-  text-decoration: none; /* Elimina la decoración del texto */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  transition-duration: 0.4s; /* Añade una transición */
-  cursor: pointer; /* Cambia el cursor */
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .my-button:hover {
-  background-color: #45a049; /* Cambia el color de fondo al pasar el mouse */
+  background-color: #45a049;
+}
+
+:host ::ng-deep .product-item .product-item-content {
+  border: 1px solid var(--surface-d);
+  border-radius: 3px;
+  margin: .3rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+:host ::ng-deep .product-item .product-image {
+  width: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.image-container {
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-image {
+  transition: transform 0.3s ease-in-out;
+}
+
+.brand-image:hover {
+  transform: scale(1.1);
+}
+
+.brand-subtitle, .brand-title, .content-text {
+  transition: color 0.3s ease-in-out;
+}
+
+.brand-subtitle:hover, .brand-title:hover, .content-text:hover {
+  color: #ffffff;
+}
+
+.dark-card {
+  background-color: #181846;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.white-text {
+  color: #FFFFFF;
+}
+
+.brand-card {
+  font-family: 'Oswald', sans-serif;
+  border-radius: 15px; // Ajusta este valor a tus necesidades
 }
 
 
-:host ::ng-deep {
-  .product-item {
-      .product-item-content {
-          border: 1px solid var(--surface-d);
-          border-radius: 3px;
-          margin: .3rem;
-          text-align: center;
-          padding: 2rem 0;
-      }
+ion-footer {
+  --background: #181846;
 
-      .product-image {
-          width: 50%;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
-      }
+  ::ng-deep {
+    h5, a, p {
+      color: white;
+    }
+
+    ion-icon {
+      color: white;
+    }
   }
 }

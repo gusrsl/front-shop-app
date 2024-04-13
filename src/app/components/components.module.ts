@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     // Declara tus componentes aquí
     MenuComponent,
     HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     // Exporta tus componentes aquí
     MenuComponent,
     HeaderComponent,
+    FooterComponent
   ]
 })
 export class ComponentsModule { }

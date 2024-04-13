@@ -8,16 +8,18 @@
 
   <div *ngIf="isLoggedIn; else notLoggedIn">
     <!-- Contenido para usuarios conectados -->
-    <ion-card>
+    <ion-card class="brand-card dark-card">
       <ion-card-header>
-        <ion-card-title>Bienvenido de nuevo!</ion-card-title>
+        <ion-card-title class="brand-title white-text">Bienvenido de nuevo!</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Aquí puedes ver tus productos favoritos y las últimas ofertas.</p>
-        <!-- Lista de productos -->
-        <ion-list>
+        <div class="content-container">
+          <p class="content-text white-text">Aquí puedes ver tus productos favoritos y las últimas ofertas.</p>
+          <!-- Lista de productos -->
+          <ion-list>
 
-        </ion-list>
+          </ion-list>
+        </div>
       </ion-card-content>
     </ion-card>
     <br>
@@ -25,8 +27,11 @@
 
   <ion-grid>
     <ion-row class="ion-justify-content-center ion-align-items-center">
-      <ion-col size="12" size-md="6" size-lg="4">
-        <ion-card style="width: 360px;">
+      <ion-col size="12" size-md="6" size-lg="4" style="
+      display: flex;
+      justify-content: center;
+      align-items: center;">
+        <ion-card style="width: 360px; border-radius: 15px;">
           <ion-card-header>
             <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
             <ion-card-title>Adidas</ion-card-title>
@@ -40,8 +45,11 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col size="12" size-md="6" size-lg="4">
-        <ion-card style="width: 360px;">
+      <ion-col size="12" size-md="6" size-lg="4" style="
+      display: flex;
+      justify-content: center;
+      align-items: center;">
+        <ion-card style="width: 360px; border-radius: 15px;">
           <ion-card-header>
             <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
             <ion-card-title>Nike</ion-card-title>
@@ -55,16 +63,21 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col size="12" size-md="6" size-lg="4">
-        <ion-card style="width: 360px;">
+      <ion-col size="12" size-md="6" size-lg="4" style="
+      display: flex;
+      justify-content: center;
+      align-items: center;">
+        <ion-card style="width: 360px; border-radius: 15px;">
           <ion-card-header>
             <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
             <ion-card-title>Puma</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            <img src="https://gustavo-rodriguez.tech/imagenes_local/pumalogo.png" alt="Card" />
-            <p style="  text-align: center;">
+            <div style="height: 340px;">
+              <img src="https://gustavo-rodriguez.tech/imagenes_local/pumalogo.png" alt="Card" style="margin-top: 50px;"/>
+            </div>
+            <p style="text-align: center;">
               Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
             </p>
           </ion-card-content>
@@ -73,12 +86,89 @@
     </ion-row>
   </ion-grid>
 
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-  <ng-template #notLoggedIn>
-    <!-- Contenido para usuarios no conectados -->
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Bienvenido a nuestra tienda!</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
+<ng-template #notLoggedIn>
+  <!-- Contenido para usuarios no conectados -->
+  <br>
+  <ion-card class="brand-card dark-card">
+    <ion-card-header>
+      <ion-card-title class="brand-title white-text">Bienvenido a nuestra tienda!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="content-container">
+        <p class="content-text white-text">Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ng-template>
+
+
+<!-- ... el resto de tu código ... -->
+
+<ng-template >
+  <!-- Contenido para usuarios no conectados -->
+  <br>
+  <ion-card class="brand-card dark-card">
+    <ion-card-header>
+      <ion-card-title class="brand-title white-text">Bienvenido a nuestra tienda!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="content-container">
+        <p class="content-text white-text">Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ng-template>
+
+<!-- ... el resto de tu código ... -->
+
+<ng-template #notLoggedIn>
+  <!-- Contenido para usuarios no conectados -->
+  <br>
+  <ion-card class="brand-card dark-card">
+    <ion-card-header>
+      <ion-card-title class="brand-title white-text">Bienvenido a nuestra tienda!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="content-container">
+        <p class="content-text white-text">Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ng-template>
+
+<!-- Aquí comienza el pie de página -->
+<ion-footer>
+  <ion-toolbar >
+    <ion-grid style="background-color: #181846;">
+      <ion-row >
+        <ion-col size="4" style="background-color: #181846;">
+          <h5>Nuestra Compañía</h5>
+          <ion-list lines="none" style="background-color: #181846!;">
+            <ion-item><ion-label><a href="#">Acerca de nosotros</a></ion-label></ion-item>
+            <ion-item><ion-label><a href="#">Términos y condiciones</a></ion-label></ion-item>
+            <ion-item><ion-label><a href="#">Política de privacidad</a></ion-label></ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="4">
+          <h5>Servicio al Cliente</h5>
+          <ion-list lines="none" >
+            <ion-item><ion-label><a href="#">Contacto</a></ion-label></ion-item>
+            <ion-item><ion-label><a href="#">Devoluciones</a></ion-label></ion-item>
+            <ion-item><ion-label><a href="#">Mapa del sitio</a></ion-label></ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="4">
+          <h5>Redes Sociales</h5>
+          <ion-list lines="none">
+            <ion-item><ion-label><a href="#"><ion-icon name="logo-facebook"></ion-icon> Facebook</a></ion-label></ion-item>
+            <ion-item><ion-label><a href="#"><ion-icon name="logo-twitter"></ion-icon> Twitter</a></ion-label></ion-item>
+            <ion-item><ion-label><a href="#"><ion-icon name="logo-instagram"></ion-icon> Instagram</a></ion-label></ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+<!-- Aquí termina el pie de página -->
