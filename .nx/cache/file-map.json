@@ -83,6 +83,10 @@
         "hash": "14730831395863803542"
       },
       {
+        "file": "Jenkinsfile",
+        "hash": "9106432618336223655"
+      },
+      {
         "file": "android/.gitignore",
         "hash": "16088808965373471785"
       },
@@ -380,7 +384,7 @@
       },
       {
         "file": "src/app/app-routing.module.ts",
-        "hash": "5222478039766346836"
+        "hash": "18254421873422191565"
       },
       {
         "file": "src/app/app.component.html",
@@ -424,7 +428,23 @@
       },
       {
         "file": "src/app/components/components.module.ts",
-        "hash": "17403569255490721843"
+        "hash": "8986656583153220747"
+      },
+      {
+        "file": "src/app/components/footer/footer.component.html",
+        "hash": "16212533659705705307"
+      },
+      {
+        "file": "src/app/components/footer/footer.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/components/footer/footer.component.spec.ts",
+        "hash": "953915411668843849"
+      },
+      {
+        "file": "src/app/components/footer/footer.component.ts",
+        "hash": "7822877276103520495"
       },
       {
         "file": "src/app/components/header/header.component.html",
@@ -444,7 +464,7 @@
       },
       {
         "file": "src/app/components/menu/menu.component.html",
-        "hash": "8221070545325108182"
+        "hash": "10157346697399184664"
       },
       {
         "file": "src/app/components/menu/menu.component.scss",
@@ -468,11 +488,11 @@
       },
       {
         "file": "src/app/home/home.page.html",
-        "hash": "8303161642198867068"
+        "hash": "10765410388386997884"
       },
       {
         "file": "src/app/home/home.page.scss",
-        "hash": "2955412684933849060"
+        "hash": "17366650155108688682"
       },
       {
         "file": "src/app/home/home.page.spec.ts",
@@ -487,6 +507,30 @@
         "hash": "2434244327357620533"
       },
       {
+        "file": "src/app/pages/cartshop/cartshop-routing.module.ts",
+        "hash": "14300219357487828661"
+      },
+      {
+        "file": "src/app/pages/cartshop/cartshop.module.ts",
+        "hash": "13988712668908287315"
+      },
+      {
+        "file": "src/app/pages/cartshop/cartshop.page.html",
+        "hash": "13831642049024265245"
+      },
+      {
+        "file": "src/app/pages/cartshop/cartshop.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/pages/cartshop/cartshop.page.spec.ts",
+        "hash": "12832243231123154757"
+      },
+      {
+        "file": "src/app/pages/cartshop/cartshop.page.ts",
+        "hash": "6648746144860997529"
+      },
+      {
         "file": "src/app/pages/descproduct/descproduct-routing.module.ts",
         "hash": "10202285231679392957"
       },
@@ -496,11 +540,11 @@
       },
       {
         "file": "src/app/pages/descproduct/descproduct.page.html",
-        "hash": "14497392833585346566"
+        "hash": "12660123139905450530"
       },
       {
         "file": "src/app/pages/descproduct/descproduct.page.scss",
-        "hash": "3244421341483603138"
+        "hash": "8315989985984135545"
       },
       {
         "file": "src/app/pages/descproduct/descproduct.page.spec.ts",
@@ -508,7 +552,7 @@
       },
       {
         "file": "src/app/pages/descproduct/descproduct.page.ts",
-        "hash": "11556401982172318056"
+        "hash": "12713349899264334019"
       },
       {
         "file": "src/app/pages/perfil/perfil-routing.module.ts",
@@ -544,11 +588,11 @@
       },
       {
         "file": "src/app/pages/productos/productos.page.html",
-        "hash": "5476060685336911328"
+        "hash": "1256902898158326920"
       },
       {
         "file": "src/app/pages/productos/productos.page.scss",
-        "hash": "6813854601236609027"
+        "hash": "1889609806632125088"
       },
       {
         "file": "src/app/pages/productos/productos.page.spec.ts",

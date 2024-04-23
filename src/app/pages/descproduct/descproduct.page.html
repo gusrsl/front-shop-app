@@ -1,15 +1,23 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="6">
-        <img [src]="product?.image" alt="{{ product?.descripcion }}" />
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-img [src]="product?.image" alt="{{ product?.descripcion }}"></ion-img>
+        </ion-card>
       </ion-col>
-      <ion-col size="6">
-        <h2>{{ product?.descripcion }}</h2>
-        <p>Marca: {{ product?.marca }}</p>
-        <p>Colores: {{ product?.color_1 }}, {{ product?.color_2 }}</p>
-        <p>Precio: {{ product?.precio | currency }}</p>
-        <ion-button expand="full" color="primary">Añadir al carrito</ion-button>
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ product?.descripcion }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Marca:</strong> {{ product?.marca }}</p>
+            <p><strong>Colores:</strong> {{ product?.color_1 }}, {{ product?.color_2 }}</p>
+            <p><strong>Precio:</strong> {{ product?.precio | currency }}</p>
+            <ion-button expand="full" color="primary">Añadir al carrito</ion-button>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -18,8 +26,33 @@
       <ion-card-title>Detalles del producto</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Días de entrega: {{ product?.dias_entrega }}</p>
-      <!-- Aquí puedes agregar más detalles del producto -->
+      <p><strong>Días de entrega:</strong> {{ product?.dias_entrega }}</p>
+      <p><strong>Material:</strong> Malla transpirable</p>
+      <p><strong>Tallas disponibles:</strong> 38, 39, 40, 41, 42, 43, 44</p>
+      <p><strong>Resistencia al agua:</strong> Sí</p>
+      <p><strong>Garantía:</strong> 1 año</p>
+      <p><strong>País de fabricación:</strong> China</p>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Productos Destacados</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let product of destacProducts">
+        <ion-card class="product-card ion-margin-bottom">
+          <img [src]="product.image" [alt]="product.descripcion" class="card-image"/>
+          <ion-card-header class="product-card-header">
+            <ion-card-title class="product-title">{{product.descripcion}}</ion-card-title>
+            <ion-card-subtitle class="product-subtitle">${{product.precio}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-button class="product-button" expand="full" color="primary" class="ion-no-margin" (click)="goToProductDetails(product)">VER PRODUCTO</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

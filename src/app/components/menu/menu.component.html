@@ -25,6 +25,9 @@
         <ion-item class="menu-item slide-in" (click)="navigateTo('/login')">
           Iniciar sesion
         </ion-item>
+        <ion-item class="menu-item slide-in" (click)="navigateTo('/cartshop')">
+          Carrito
+        </ion-item>
       </ion-menu-toggle>
       <ion-item>
         <ion-toggle [(ngModel)]="themeToggle" (ionChange)="toggleChange($event); $event.stopPropagation()" justify="space-between"

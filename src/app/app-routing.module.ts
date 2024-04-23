@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth-component/auth.module').then( m => m.AuthModule)
   },
   {
+    path: 'cartshop',
+    loadChildren: () => import('./pages/cartshop/cartshop.module').then( m => m.CartshopPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
@@ -31,6 +35,8 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   }
+
+
 ];
 
 @NgModule({
