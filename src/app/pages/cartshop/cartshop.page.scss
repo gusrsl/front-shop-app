@@ -1,0 +1,37 @@
+ion-card {
+    background-color: #f9f9f9;
+    margin: 10px;
+  }
+ion-button {
+    transition: transform 0.3s ease-in-out;
+
+    &:hover,
+    &:active {
+        transform: scale(1.1);
+    }
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+
+.animated-card {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+.animated-card:hover {
+    transform: scale(1.05);
+}
+
+.animated-button {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+.animated-button:hover {
+    transform: scale(1.05);
+}

@@ -1,9 +1,98 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información de Perfil</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+              </ion-avatar>
+              <ion-label>Foto de Perfil</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Nombre</ion-label>
+              <ion-input placeholder="Tu nombre" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Apellido</ion-label>
+              <ion-input placeholder="Tu apellido" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Correo Electrónico</ion-label>
+              <ion-input type="email" placeholder="Tu correo electrónico" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Contraseña</ion-label>
+              <ion-input type="password" placeholder="Tu contraseña" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- Nuevos campos -->
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Número de Teléfono</ion-label>
+              <ion-input type="tel" placeholder="Tu número de teléfono" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Fecha de Nacimiento</ion-label>
+              <ion-input type="tel" placeholder="Tu fecha de nacimiento" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked">Dirección</ion-label>
+              <ion-textarea placeholder="Tu dirección" readonly></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Ciudad</ion-label>
+              <ion-input placeholder="Tu ciudad" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">País</ion-label>
+              <ion-input placeholder="Tu país" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" color="primary">Editar Perfil</ion-button>
 </ion-content>

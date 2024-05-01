@@ -3,11 +3,13 @@
     <ion-toolbar class="menu-header">
       <ion-grid>
         <ion-row class="ion-align-items-center">
-          <ion-col size="6" class="ion-text-center">
-            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" alt="User Image" class="fade-in">
-          </ion-col>
-          <ion-col size="6" class="ion-text-center">
-            <p class="fade-in">Gustavo Rodriguez</p>
+          <ion-col class="ion-text-center">
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+              </ion-avatar>
+              <ion-label>Foto de Perfil</ion-label>
+            </ion-item>         
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -16,6 +18,9 @@
   <ion-content>
     <ion-list class="menu-list">
       <ion-menu-toggle auto-hide="false">
+        <ion-item class="menu-item slide-in" (click)="navigateTo('/home')">
+          Home
+        </ion-item>
         <ion-item class="menu-item slide-in" (click)="navigateTo('/productos')">
           Productos
         </ion-item>
