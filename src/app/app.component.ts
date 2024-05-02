@@ -1,5 +1,6 @@
+/* eslint-disable @angular-eslint/use-lifecycle-interface */
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { register } from 'swiper/element/bundle';
 register();
@@ -28,5 +29,6 @@ export class AppComponent {
         await SplashScreen.hide();
       }
     });
+
   }
 }
