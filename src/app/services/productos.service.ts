@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductosService {
   API_URL = environment.API_URL;
-  private apiUrl = `${this.API_URL}/productos`; // Reemplaza esto con la URL de tu API
+  private apiUrl = `${this.API_URL}productos`; // Reemplaza esto con la URL de tu API
 
   constructor(private http: HttpClient) { }
 

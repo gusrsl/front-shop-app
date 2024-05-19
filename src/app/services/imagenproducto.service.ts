@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ImagenproductoService {
   API_URL = environment.API_URL;
-  private apiUrl = `${this.API_URL}/imagen`; // Asegúrate de reemplazar esto con la URL de tu API
+  private apiUrl = `${this.API_URL}imagen`; // Asegúrate de reemplazar esto con la URL de tu API
 
   constructor(private http: HttpClient) { }
 
