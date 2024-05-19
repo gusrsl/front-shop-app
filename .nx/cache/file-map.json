@@ -400,7 +400,7 @@
       },
       {
         "file": "src/app/app.component.ts",
-        "hash": "18439675946913022815"
+        "hash": "15534859278821360171"
       },
       {
         "file": "src/app/app.module.ts",
@@ -432,11 +432,11 @@
       },
       {
         "file": "src/app/components/footer/footer.component.html",
-        "hash": "16212533659705705307"
+        "hash": "4579726701006919472"
       },
       {
         "file": "src/app/components/footer/footer.component.scss",
-        "hash": "3244421341483603138"
+        "hash": "5479781804058776866"
       },
       {
         "file": "src/app/components/footer/footer.component.spec.ts",
@@ -448,11 +448,11 @@
       },
       {
         "file": "src/app/components/header/header.component.html",
-        "hash": "16929842744459593337"
+        "hash": "4911865382342595754"
       },
       {
         "file": "src/app/components/header/header.component.scss",
-        "hash": "3244421341483603138"
+        "hash": "11904808014664652296"
       },
       {
         "file": "src/app/components/header/header.component.spec.ts",
@@ -460,11 +460,11 @@
       },
       {
         "file": "src/app/components/header/header.component.ts",
-        "hash": "6657606946323487717"
+        "hash": "16800596979566139829"
       },
       {
         "file": "src/app/components/menu/menu.component.html",
-        "hash": "10157346697399184664"
+        "hash": "3125331063910814831"
       },
       {
         "file": "src/app/components/menu/menu.component.scss",
@@ -516,11 +516,11 @@
       },
       {
         "file": "src/app/pages/cartshop/cartshop.page.html",
-        "hash": "13831642049024265245"
+        "hash": "2965324379643651566"
       },
       {
         "file": "src/app/pages/cartshop/cartshop.page.scss",
-        "hash": "3244421341483603138"
+        "hash": "1097831028300290314"
       },
       {
         "file": "src/app/pages/cartshop/cartshop.page.spec.ts",
@@ -564,7 +564,7 @@
       },
       {
         "file": "src/app/pages/perfil/perfil.page.html",
-        "hash": "3925893428042146955"
+        "hash": "17882209579454157052"
       },
       {
         "file": "src/app/pages/perfil/perfil.page.scss",
@@ -676,7 +676,7 @@
       },
       {
         "file": "src/environments/environment.prod.ts",
-        "hash": "17003859461359950896"
+        "hash": "2930782524775957031"
       },
       {
         "file": "src/environments/environment.ts",
