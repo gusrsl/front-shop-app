@@ -30,12 +30,27 @@ ion-button:hover {
   height: auto;
 }
 
+.card-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+  border-radius: 15px;
+  overflow: hidden; /* Esto es para que la imagen también tenga los bordes redondeados */
+}
+
 .card-image {
-  width: 100%;
+  border-radius: 15px;
   height: 200px;
-  object-fit: contain;
-  background-color: white;
-  border-radius: 5px;
+  object-fit: cover;
+}
+
+ion-card-header {
+  flex-grow: 1;
+}
+
+button-cart {
+  margin-top: auto;
 }
 
 .product-card {

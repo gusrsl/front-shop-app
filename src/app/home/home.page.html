@@ -1,29 +1,28 @@
 <ion-content id="main-content">
-    <swiper-container>
+    <swiper-container [autoplay]="{ delay: 7000 }">
       <swiper-slide *ngFor="let image of images">
-        <img [src]="image" alt="Slide image">
+        <img [src]="image" alt="Slide image"  class="my-image">
       </swiper-slide>
     </swiper-container>
 
+<div style="background-color: rgb(18, 41, 84);margin: 0; padding: 0;">
+  <svg style="  background-color: #ffffff;   margin: 0; padding: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="rgb(18, 41, 84)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
+    <h2 class="cat-title">Categorias</h2>
+  <ion-card class="company-card">
+    <ion-card-header>
+      <ion-card-title class="company-title">Nuestras Categorías</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
 
-  <div *ngIf="isLoggedIn; else notLoggedIn">
-    <!-- Contenido para usuarios conectados -->
-    <ion-card class="brand-card dark-card">
-      <ion-card-header>
-        <ion-card-title class="brand-title white-text">Bienvenido de nuevo!</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="content-container">
-          <p class="content-text white-text">Aquí puedes ver tus productos favoritos y las últimas ofertas.</p>
-          <!-- Lista de productos -->
-          <ion-list>
+    </ion-card-content>
+  </ion-card>
+  <svg style="  background-color: rgb(18, 41, 84);   margin: 0; padding: 0; display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#ffffff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
+</div>
 
-          </ion-list>
-        </div>
-      </ion-card-content>
-    </ion-card>
-    <br>
-  </div>
 
   <ion-grid>
     <ion-row class="ion-justify-content-center ion-align-items-center">
@@ -72,11 +71,8 @@
             <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
             <ion-card-title>Puma</ion-card-title>
           </ion-card-header>
-
           <ion-card-content>
-            <div style="height: 340px;">
-              <img src="https://gustavo-rodriguez.tech/imagenes_local/pumalogo.png" alt="Card" style="margin-top: 50px;"/>
-            </div>
+              <img src="https://gustavo-rodriguez.tech/imagenes_local/pumalogo.png" alt="Card"/>
             <p style="text-align: center;">
               Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
             </p>
@@ -86,89 +82,55 @@
     </ion-row>
   </ion-grid>
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<svg style="  background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+</svg>
 
-<ng-template #notLoggedIn>
-  <!-- Contenido para usuarios no conectados -->
-  <br>
-  <ion-card class="brand-card dark-card">
+<div style="  background-color: #ffffff; font-size:150%;" >
+  <h2 class="release-title">Nuevos lanzamientos</h2>
+</div>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <ion-grid class="release-grid" style="background-color: rgb(255, 172, 83);">
+    <ion-row class="release-row">
+      <ion-col class="release-card-col" *ngFor="let shoe of newReleases">
+        <ion-card class="release-card">
+          <ion-card-header class="release-card-header">
+            <ion-card-subtitle class="release-card-subtitle">{{shoe.brand}}</ion-card-subtitle>
+            <ion-card-title class="release-card-title">{{shoe.name}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content class="release-card-content">
+            <img class="release-card-image" [src]="shoe.image" alt="Shoe image" />
+            <p class="release-card-description">
+              {{shoe.description}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <svg style="  background-color: rgb(255, 172, 83);;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#ffffff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
+
+<ion-card class="company-card">
     <ion-card-header>
-      <ion-card-title class="brand-title white-text">Bienvenido a nuestra tienda!</ion-card-title>
+      <ion-card-title class="company-title">Nuestra Empresa</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div class="content-container">
-        <p class="content-text white-text">Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
+      <div class="company-description-container">
+        <p class="company-description">
+          Nuestra empresa es un proveedor líder de zapatos deportivos de alta calidad. Estamos comprometidos a ofrecer un servicio al cliente excepcional y garantizar que nuestros clientes tengan una gran experiencia con nosotros. Nuestro equipo es dedicado, profesional y siempre está listo para asistir con tus necesidades. Creemos en la innovación, la integridad y en ofrecer valor a nuestros clientes. Constantemente nos esforzamos por mejorar e innovar, asegurándonos de mantenernos a la vanguardia de nuestra industria. Gracias por elegirnos.
+        </p>
       </div>
     </ion-card-content>
   </ion-card>
-</ng-template>
 
 
-<!-- ... el resto de tu código ... -->
+<br><br><br>
 
-<ng-template >
-  <!-- Contenido para usuarios no conectados -->
-  <br>
-  <ion-card class="brand-card dark-card">
-    <ion-card-header>
-      <ion-card-title class="brand-title white-text">Bienvenido a nuestra tienda!</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="content-container">
-        <p class="content-text white-text">Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
-      </div>
-    </ion-card-content>
-  </ion-card>
-</ng-template>
 
-<!-- ... el resto de tu código ... -->
 
-<ng-template #notLoggedIn>
-  <!-- Contenido para usuarios no conectados -->
-  <br>
-  <ion-card class="brand-card dark-card">
-    <ion-card-header>
-      <ion-card-title class="brand-title white-text">Bienvenido a nuestra tienda!</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="content-container">
-        <p class="content-text white-text">Para disfrutar de todas las funciones, por favor inicia sesión o regístrate.</p>
-      </div>
-    </ion-card-content>
-  </ion-card>
-</ng-template>
 
-<!-- Aquí comienza el pie de página -->
-<ion-footer>
-  <ion-toolbar >
-    <ion-grid style="background-color: #181846;">
-      <ion-row >
-        <ion-col size="4" style="background-color: #181846;">
-          <h5>Nuestra Compañía</h5>
-          <ion-list lines="none" style="background-color: #181846!;">
-            <ion-item><ion-label><a href="#">Acerca de nosotros</a></ion-label></ion-item>
-            <ion-item><ion-label><a href="#">Términos y condiciones</a></ion-label></ion-item>
-            <ion-item><ion-label><a href="#">Política de privacidad</a></ion-label></ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col size="4">
-          <h5>Servicio al Cliente</h5>
-          <ion-list lines="none" >
-            <ion-item><ion-label><a href="#">Contacto</a></ion-label></ion-item>
-            <ion-item><ion-label><a href="#">Devoluciones</a></ion-label></ion-item>
-            <ion-item><ion-label><a href="#">Mapa del sitio</a></ion-label></ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col size="4">
-          <h5>Redes Sociales</h5>
-          <ion-list lines="none">
-            <ion-item><ion-label><a href="#"><ion-icon name="logo-facebook"></ion-icon> Facebook</a></ion-label></ion-item>
-            <ion-item><ion-label><a href="#"><ion-icon name="logo-twitter"></ion-icon> Twitter</a></ion-label></ion-item>
-            <ion-item><ion-label><a href="#"><ion-icon name="logo-instagram"></ion-icon> Instagram</a></ion-label></ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
-<!-- Aquí termina el pie de página -->

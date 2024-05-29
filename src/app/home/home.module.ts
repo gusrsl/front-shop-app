@@ -9,9 +9,6 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { ComponentsModule } from '../components/components.module';
 
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   imports: [
@@ -20,10 +17,7 @@ import { CarouselModule } from 'primeng/carousel';
     IonicModule,
     HomePageRoutingModule,
     ComponentsModule, // Importa ComponentsModule aquí
-    CardModule,
-    ButtonModule,
-    CarouselModule
-    
+
   ],
   declarations: [HomePage],
   schemas: [NO_ERRORS_SCHEMA]

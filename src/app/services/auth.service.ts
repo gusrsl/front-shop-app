@@ -42,8 +42,20 @@ export class AuthService {
       });
   }
 
-  userRegister(req: any){
-    return this.http.post(`${this.API_URL}auth/register`,req);
+  registerUser(user: any) {
+    return this.http.post(`${this.API_URL}auth/register`, user)
+      .toPromise()
+      .then((response: any) => {
+        if (response && response.auth) {
+          this._storage?.set('token', response.token);
+          this.loggedIn.next(true);
+        } else {
+          console.log('Error en el registro: no se recibió el token');
+        }
+      })
+      .catch((error) => {
+        console.log('Error en el registro', error);
+      });
   }
 
   async logout() {

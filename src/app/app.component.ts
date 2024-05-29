@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { SplashScreen } from '@capacitor/splash-screen';
+import { MenuController } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -11,9 +12,9 @@ register();
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  showMenu = false;
+  showMenu = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private menu: MenuController) {}
 
   async ngOnInit() {
     // Show the splash for an indefinite amount of time:
@@ -30,5 +31,18 @@ export class AppComponent {
       }
     });
 
+  }
+
+  navigateToCartShop() {
+    // Aquí puedes realizar cualquier lógica adicional que necesites
+    // antes de navegar a la página de la tienda de carritos.
+
+    this.router.navigate(['/cartshop']);
+  }
+
+  navigateTo(path: string) {
+    console.log('navigateTo llamado con ruta:', path);
+    this.menu.close();
+    this.router.navigateByUrl(path);
   }
 }

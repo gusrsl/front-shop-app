@@ -1,24 +1,25 @@
 <ion-header>
-    <ion-toolbar>
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-            <!-- Logotipo de la tienda -->
-            <div class="logo">
-                <img src="../../../assets/logodarmacio.png" alt="Logo de la tienda" style="height: 30px;">
-            </div>
+  <ion-toolbar>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <!-- Botón del menú -->
+      <ion-buttons>
+        <ion-menu-button mode="md"></ion-menu-button>
+      </ion-buttons>
 
-            <!-- Barra de búsqueda -->
-            <ion-searchbar mode="md" search-icon="search-circle" placeholder="Custom Search Icon"></ion-searchbar>
+      <!-- Logotipo de la tienda -->
+      <div class="logo">
+        <img src="../../../assets/logodarmacio.png" alt="Logo de la tienda" style="height: 30px;">
+      </div>
 
-            <!-- Botón del carrito de compras -->
-            <ion-buttons slot="end" style="margin-right: 10px;">
-                <ion-button mode="md" routerLink="/cartshop" (click)="navigateToCartShop()">
-                    <ion-icon slot="icon-only" name="cart"></ion-icon>
-                </ion-button>
-            </ion-buttons>
-        </div>
+      <!-- Barra de búsqueda -->
+      <ion-searchbar mode="md" search-icon="search-circle" placeholder="Custom Search Icon"></ion-searchbar>
 
-        <ion-buttons slot="start">
-            <ion-menu-button mode="md"></ion-menu-button>
-        </ion-buttons>
-    </ion-toolbar>
+      <!-- Botón del carrito de compras -->
+      <ion-buttons slot="end" style="margin-right: 10px;">
+        <ion-button mode="md" routerLink="/cartshop" (click)="navigateToCartShop()">
+          <ion-icon slot="icon-only" name="cart"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
 </ion-header>

@@ -18,6 +18,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ComponentsModule // Importa ComponentsModule aquí
 
   ],
-  declarations: [ProductosPage]
+  declarations: [ProductosPage],
+
 })
 export class ProductosPageModule {}

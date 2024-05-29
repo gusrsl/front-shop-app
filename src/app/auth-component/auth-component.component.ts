@@ -79,12 +79,13 @@ login() {
         nombreUsuario: nombreUsuarioControl.value,
         contrasena: contrasenaControl.value
       };
-
+      console.log(loginData)
       this.auth.userLogin(loginData).then(async (data: any) => {
-        console.log(data);
         this.auth.getToken().then(async (token) => {
           console.log('Token JWT:', token); // Aquí puedes ver el token JWT en la consola
           if (token) { // Verifica si el token existe
+            // Almacena el token en el almacenamiento local
+            localStorage.setItem('token', token);
             this.presentToast('Inicio de sesión exitoso!', 'success');
             // Redirigir al usuario a la página de inicio
             this.router.navigate(['/home']);
@@ -114,40 +115,17 @@ login() {
   }
 
 
-register() {
-  if (this.registerData.valid) {
-    const nombreUsuarioControl = this.registerData.get('nombreUsuario');
-    const contrasenaControl = this.registerData.get('contrasena');
-    const correoControl = this.registerData.get('correo');
-    const nombreControl = this.registerData.get('nombre');
-    const apellidoControl = this.registerData.get('apellido');
-    const direccionControl = this.registerData.get('direccion');
-    const ciudadControl = this.registerData.get('ciudad');
-    const paisControl = this.registerData.get('pais');
-    const codigoPostalControl = this.registerData.get('codigoPostal');
-    const telefonoControl = this.registerData.get('telefono');
-
-    if (nombreUsuarioControl && contrasenaControl && correoControl && nombreControl && apellidoControl && direccionControl && ciudadControl && paisControl && codigoPostalControl && telefonoControl) {
-      const registerData = {
-        nombreUsuario: nombreUsuarioControl.value,
-        contrasena: contrasenaControl.value,
-        correo: correoControl.value,
-        nombre: nombreControl.value,
-        apellido: apellidoControl.value,
-        direccion: direccionControl.value,
-        ciudad: ciudadControl.value,
-        pais: paisControl.value,
-        codigoPostal: codigoPostalControl.value,
-        telefono: telefonoControl.value
-      };
-
-      // Resto del código...
-    } else {
-      // Manejar el caso cuando alguno de los controles es null
-    }
-  } else {
-    // Resto del código...
+  register() {
+    this.auth.registerUser(this.registerData.value)
+      .then(() => {
+        console.log('Registro exitoso');
+        this.presentToast('Registro exitoso!', 'success');
+        this.change('signin')
+      })
+      .catch((error) => {
+        console.error('Error en el registro', error);
+        this.presentToast('Error en el registro', 'danger');
+      });
   }
-}
 
 }
