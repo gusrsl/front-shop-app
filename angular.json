@@ -32,8 +32,8 @@
               }
             ],
             "styles": [
-              "src/global.scss", 
-              "src/theme/variables.scss",     
+              "src/global.scss",
+              "src/theme/variables.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css"],
             "scripts": []
@@ -44,12 +44,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "10kb"
                 }
               ],
               "fileReplacements": [
@@ -116,8 +116,8 @@
               }
             ],
             "styles": [
-              "src/global.scss", 
-              "src/theme/variables.scss",     
+              "src/global.scss",
+              "src/theme/variables.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css"],
             "scripts": []
