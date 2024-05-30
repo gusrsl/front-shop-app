@@ -30,7 +30,16 @@ const routes: Routes = [
   {
     path: 'cartshop',
     loadChildren: () => import('./pages/cartshop/cartshop.module').then( m => m.CartshopPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./admin/users/users.module').then( m => m.UsersPageModule)
   }
+
 
 
 

@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit, TemplateRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Swiper } from 'swiper';
 import { NgIfContext } from '@angular/common';
+import { UserDataService } from '../services/userdata.service';
 
 @Component({
   selector: 'app-home',
@@ -64,13 +65,20 @@ export class HomePage implements OnInit, AfterViewInit {
     }
   ];
     notLoggedIn: any
+  userData: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userDataService: UserDataService) { }
 
   ngOnInit() {
     this.authService.isLoggedIn.subscribe(loggedIn => {
       this.isLoggedIn = loggedIn;
     });
+
+      // Obtiene la data del usuario
+  this.userData = this.userDataService.getUserData();
+
+  // Ahora puedes usar userData
+  console.log(this.userData);
   }
 
 getSeverity(status: string): "success" | "warning" | "danger" {

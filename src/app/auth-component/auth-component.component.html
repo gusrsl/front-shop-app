@@ -11,8 +11,8 @@
         <ion-card class="form-card">
 
           <div class="form-content">
-          <form [formGroup]="loginData">
-            <ion-item lines="none" class="ion-item">
+            <form [formGroup]="loginData" (ngSubmit)="login()">
+              <ion-item lines="none" class="ion-item">
               <fieldset  class="input-item">
                 <legend>Nombre de usuario</legend>
                 <ion-input formControlName="nombreUsuario" type="text" placeholder="Usuario"></ion-input>

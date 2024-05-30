@@ -13,8 +13,16 @@ register();
 })
 export class AppComponent {
   showMenu = true;
+  isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  constructor(private router: Router, private menu: MenuController) {}
+
+  constructor(private router: Router, private menu: MenuController) {
+    if (this.isMobile) {
+      console.log('Estás en un dispositivo móvil');
+    } else {
+      console.log('Estás en un escritorio');
+    }
+  }
 
   async ngOnInit() {
     // Show the splash for an indefinite amount of time:

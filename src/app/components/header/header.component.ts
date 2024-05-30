@@ -1,17 +1,45 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDataService } from 'src/app/services/userdata.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  userData: any;
+  intervalId: any;
 
-  constructor(private router: Router) { }
+    menuItems = [
+      {
+        title: 'Hombres',
+      },
+    {
+      title: 'Mujeres',
+    },
+    {
+      title: 'Niños',
+    },
+  ];
 
-  ngOnInit() {
+
+  constructor(private router: Router, private userDataService: UserDataService) { }
+
+  async ngOnInit() {
+    // Obtiene la data del usuario
+    await this.updateUserData();
+
+    // Configura un intervalo para verificar la data del usuario cada 5 segundos
+    this.intervalId = setInterval(() => this.updateUserData(), 5000);
+  }
+
+  async updateUserData() {
+    // Espera a que la Promesa se resuelva y luego obtiene la data del usuario
+    this.userData = await this.userDataService.getUserData();
+
+    // Ahora puedes usar userData
+    console.log('header data user >>', this.userData);
   }
 
   navigateToCartShop() {
@@ -21,4 +49,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/cartshop']);
   }
 
+  ngOnDestroy() {
+    // Asegúrate de limpiar el intervalo cuando el componente se destruye
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
 }

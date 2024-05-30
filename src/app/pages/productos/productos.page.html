@@ -35,7 +35,7 @@
                   <ion-card-title>{{product.descripcion}}</ion-card-title>
                   <ion-card-subtitle>${{product.precio}}</ion-card-subtitle>
                 </ion-card-header>
-                <ion-button expand="full" color="primary" class="button-cart">Agregar al carrito</ion-button>
+                <ion-button expand="full" color="primary" class="button-cart">VER</ion-button>
               </ion-card>
             </ion-col>
             <!-- Fin del bloque para cada producto -->
@@ -43,15 +43,19 @@
           <ion-row>
             <ion-col>
               <!-- Botón para ir a la página anterior -->
-              <ion-button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</ion-button>
+              <ion-button (click)="previousPage()" [disabled]="currentPage === 1">
+                <ion-icon name="arrow-back"></ion-icon>
+              </ion-button>
             </ion-col>
             <ion-col>
               <!-- Muestra el número de la página actual -->
-              <p>Página {{currentPage}}</p>
+              <p>{{currentPage}}</p>
             </ion-col>
             <ion-col>
               <!-- Botón para ir a la página siguiente -->
-              <ion-button (click)="nextPage()" [disabled]="currentPage * pageSize >= products.length">Siguiente</ion-button>
+              <ion-button (click)="nextPage()" [disabled]="currentPage * pageSize >= products.length">
+                <ion-icon name="arrow-forward"></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

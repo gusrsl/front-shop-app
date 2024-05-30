@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage-angular';
 
@@ -26,21 +26,22 @@ export class AuthService {
     this._storage = storage;
   }
 
-  userLogin(req: any){
-    return this.http.post(`${this.API_URL}auth/login`,req)
-      .toPromise()
-      .then((response: any) => {
-        if (response && response.auth) {
-          this._storage?.set('token', response.token);
-          this.loggedIn.next(true);
-        } else {
-          console.log('Error en el inicio de sesión: no se recibió el token');
-        }
-      })
-      .catch((error) => {
-        console.log('Error en el inicio de sesión', error);
-      });
-  }
+  userLogin(req: any): Observable<any> {
+      return this.http.post(`${this.API_URL}auth/login`, req).pipe(
+        tap((response: any) => {
+          if (response && response.auth) {
+            this._storage?.set('token', response.token);
+            this.loggedIn.next(true);
+          } else {
+            console.log('Error en el inicio de sesión: no se recibió el token');
+          }
+        }),
+        catchError((error) => {
+          console.log('Error en el inicio de sesión', error);
+          return throwError(error);
+        })
+      );
+    }
 
   registerUser(user: any) {
     return this.http.post(`${this.API_URL}auth/register`, user)

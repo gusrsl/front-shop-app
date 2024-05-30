@@ -5,3 +5,39 @@ ion-searchbar {
     --border-radius: 15px;
 
   }
+
+  /* header.component.scss */
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-section ion-avatar {
+  margin-right: 10px;
+}
+
+.user-section span {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.user-section ion-avatar {
+  margin-right: 10px;
+  width: 30px;  /* Ajusta el ancho de la imagen */
+  height: 30px; /* Ajusta la altura de la imagen */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}
+
+

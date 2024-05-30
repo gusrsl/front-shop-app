@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { UserDataService } from '../services/userdata.service';
 
 @Component({
   selector: 'app-auth-component',
@@ -26,7 +27,8 @@ export class AuthComponent implements OnInit {
     private auth:AuthService,
     private toastController: ToastController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private userDataService: UserDataService
     ) {
 
       this.loginData = this.fb.group({
@@ -68,44 +70,58 @@ export class AuthComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-login() {
-  if (this.loginData.valid) {
-    this.isLoading = true;
-    const nombreUsuarioControl = this.loginData.get('nombreUsuario');
-    const contrasenaControl = this.loginData.get('contrasena');
+  login() {
+    if (this.loginData.valid) {
+      this.isLoading = true;
+      const nombreUsuarioControl = this.loginData.get('nombreUsuario');
+      const contrasenaControl = this.loginData.get('contrasena');
 
-    if (nombreUsuarioControl && contrasenaControl) {
-      const loginData = {
-        nombreUsuario: nombreUsuarioControl.value,
-        contrasena: contrasenaControl.value
-      };
-      console.log(loginData)
-      this.auth.userLogin(loginData).then(async (data: any) => {
-        this.auth.getToken().then(async (token) => {
-          console.log('Token JWT:', token); // Aquí puedes ver el token JWT en la consola
-          if (token) { // Verifica si el token existe
-            // Almacena el token en el almacenamiento local
-            localStorage.setItem('token', token);
-            this.presentToast('Inicio de sesión exitoso!', 'success');
-            // Redirigir al usuario a la página de inicio
-            this.router.navigate(['/home']);
-          } else {
-            // Si el token no existe, muestra un error
-            this.presentToast('Error al obtener el token.', 'danger');
-          }
-        }).catch((error) => {
+      if (nombreUsuarioControl && contrasenaControl) {
+        const loginData = {
+          nombreUsuario: nombreUsuarioControl.value,
+          contrasena: contrasenaControl.value
+        };
+
+        this.auth.userLogin(loginData).subscribe(async (data: any) => {
+          if (data.auth) {
+            console.log('Token JWT: ', data.token);
+            console.log('Message: ', data.message);
+            if (data.token) {
+              // Almacena el token en el almacenamiento local
+              localStorage.setItem('token', data.token);
+              // Almacena el token en el storage de Ionic
+              await this.storage.set('token', data.token);
+
+              // Almacena los datos del usuario en el almacenamiento local
+              localStorage.setItem('usuario', JSON.stringify(data.usuario));
+              // Almacena los datos del usuario en el storage de Ionic
+              await this.storage.set('usuario', JSON.stringify(data.usuario));
+              this.userDataService.setUserData(data.usuario);
+
+              let userData = await this.userDataService.getUserData();
+              if (userData) {
+                console.log('Datos del usuario: ', userData);
+                // Si el tipo de usuario es 'admin', redirige al usuario a '/dashboard'
+                if (userData.type === 'admin') {
+                  this.router.navigate(['/dashboard']);
+                } else {
+                  this.router.navigate(['/home']);
+                }
+              } else {
+                console.log('No se encontraron datos del usuario.');
+              }
+
+              this.presentToast('Inicio de sesión exitoso!', 'success');
+            }
+        }}, (error) => {
           console.log(error);
-          this.presentToast('Error al obtener el token.', 'danger');
+          this.presentToast('Error en el inicio de sesión.', 'danger');
         });
-      }).catch((error) => {
-        console.log(error);
-        this.presentToast('Error en el inicio de sesión.', 'danger');
-      });
-    } else {
-      this.presentToast('Por favor, completa todos los campos.', 'warning');
+      } else {
+        this.presentToast('Por favor, completa todos los campos.', 'warning');
+      }
     }
   }
-}
 
   logout() {
     this.auth.logout().then(() => {
