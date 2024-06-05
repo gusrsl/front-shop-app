@@ -1,0 +1,80 @@
+
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <ion-list-header>
+        <h2>Resumen...</h2>
+      </ion-list-header>
+      <ion-item *ngFor="let item of cart">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="item.product.images[0]"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{item.product.descripcion}}</h2>
+          <p>Cantidad: {{item.quantity}}</p>
+          <p>Precio: ${{item.product.precio}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label>Subtotal</ion-label>
+      <ion-note slot="end">${{subtotal}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Descuento</ion-label>
+      <ion-note slot="end">${{discount}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargo de envío</ion-label>
+      <ion-note slot="end">${{shippingCharge}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total</ion-label>
+      <ion-note slot="end">${{total}}</ion-note>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pago con Tarjeta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div id="card-element"></div>
+      <ion-button expand="full" (click)="processCardPayment()">Pagar con Tarjeta</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¿Por qué pagar con tarjeta?</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Pagar con tarjeta es rápido, fácil y seguro. No necesitas tener efectivo a mano y puedes hacer un seguimiento de tus gastos más fácilmente.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Seguridad</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Tu seguridad es nuestra prioridad. Utilizamos la tecnología de encriptación más avanzada para proteger tus datos de pago.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¿Necesitas ayuda?</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Si tienes problemas para realizar un pago o tienes alguna pregunta, estamos aquí para ayudarte. Contacta con nuestro servicio de atención al cliente.</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

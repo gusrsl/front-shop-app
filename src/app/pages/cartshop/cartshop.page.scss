@@ -1,37 +1,33 @@
-ion-card {
-    background-color: #f9f9f9;
-    margin: 10px;
-  }
-ion-button {
-    transition: transform 0.3s ease-in-out;
-
-    &:hover,
-    &:active {
-        transform: scale(1.1);
-    }
+.product-card {
+  height: 300px;
+  width: 100%; /* Ancho por defecto */
 }
 
-.responsive-image {
-    max-width: 100%;
-    height: auto;
-  }
-
-
-
-.animated-card {
-    transition: all 0.3s ease-in-out;
-    transform: scale(1);
+.product-image {
+  height: 50%;
+  width: 100%; /* Ancho por defecto */
 }
 
-.animated-card:hover {
-    transform: scale(1.05);
+.product-details {
+  height: 40%;
+  width: 100%; /* Ancho por defecto */
+
 }
 
-.animated-button {
-    transition: all 0.3s ease-in-out;
-    transform: scale(1);
+.quantity-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center; /* Alineación vertical al centro */
+  width: 100%; /* Ancho por defecto */
 }
 
-.animated-button:hover {
-    transform: scale(1.05);
+.quantity-input {
+  width: 50px;
+  text-align: center;
+}
+
+.ion-margin {
+  position: relative;
+  z-index: 1;
 }

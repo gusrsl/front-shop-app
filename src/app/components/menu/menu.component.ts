@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage-angular';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent implements OnInit, OnChanges {
+export class MenuComponent implements OnInit {
   themeToggle: any;
   userData: any;
   intervalId: any;
@@ -26,25 +26,24 @@ export class MenuComponent implements OnInit, OnChanges {
     this.initializeDarkTheme(false);
 
     // Obtiene la data del usuario
-    await this.updateUserData();
+    //await this.updateUserData();
 
-    this.intervalId = setInterval(() => this.updateUserData(), 5000);
+    setInterval(() => {
+      try {
+        this.updateUserData();
+      } catch (error) {
+        console.error('Error al actualizar los datos del usuario:', error);
+      }
+    }, 1000);
 
   }
 
-  async ngOnChanges() {
-    console.log('ngOnChanges llamado');
-    // Obtiene la data del usuario
-    await this.updateUserData();
-  }
 
   async updateUserData() {
-    console.log('updateUserData llamado');
     // Espera a que la Promesa se resuelva y luego obtiene la data del usuario
     this.userData = await this.userDataService.getUserData();
 
     // Ahora puedes usar userData
-    console.log('menu data user >>', this.userData);
   }
 
   navigateTo(path: string) {

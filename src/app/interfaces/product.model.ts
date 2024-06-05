@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 export interface Product {
   uu_id: string;
   codigo_alfa: string;
@@ -16,4 +15,5 @@ export interface Product {
   producto_destacado: boolean;
   idestado: number;
   image: string;
+  images: string[]; // Cambiado de 'image' a 'images'
 }

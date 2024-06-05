@@ -27,19 +27,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private userDataService: UserDataService) { }
 
   async ngOnInit() {
-    // Obtiene la data del usuario
-    await this.updateUserData();
 
-    // Configura un intervalo para verificar la data del usuario cada 5 segundos
-    this.intervalId = setInterval(() => this.updateUserData(), 5000);
+    setInterval(() => {
+      try {
+        this.updateUserData();
+      } catch (error) {
+        console.error('Error al actualizar los datos del usuario:', error);
+      }
+    }, 1000);
+
   }
 
   async updateUserData() {
     // Espera a que la Promesa se resuelva y luego obtiene la data del usuario
     this.userData = await this.userDataService.getUserData();
-
-    // Ahora puedes usar userData
-    console.log('header data user >>', this.userData);
   }
 
   navigateToCartShop() {

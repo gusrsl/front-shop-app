@@ -1,0 +1,36 @@
+ion-content {
+  ion-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    background-color: #f0f0f0; // Blanco frío
+
+
+    ion-list {
+      ion-item {
+        border-radius: 15px;
+        margin: 5px 0;
+      }
+    }
+
+    ion-card-header {
+      text-align: center;
+    }
+
+    ion-card-content {
+      #card-element {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+      }
+
+      ion-button {
+        margin-top: 10px;
+      }
+    }
+    @media (min-width: 768px) {
+      max-width: 600px;
+      margin: 10px auto;
+    }
+  }
+}

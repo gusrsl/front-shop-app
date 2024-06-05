@@ -53,17 +53,15 @@ export class ProductosPage implements OnInit {
     const products = await this.productosService.getAllProducts().toPromise();
     this.products = products;
     for (const product of this.products) {
+      const images = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
+      if (images.length === 0) {
+        product.images = ['https://gustavo-rodriguez.tech/imagenes_local/noimage.jpg'];
+      } else {
+        product.images = images.map((image: { ruta_img: any; }) => `https://gustavo-rodriguez.tech/imagenes_local/${image.ruta_img}`);
+      }
       console.log(product);
-      const image = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
-      product.image = `https://gustavo-rodriguez.tech/imagenes_local/${image.ruta_img}`;
     }
 
-    const destacProducts = await this.productosService.getDestacProducts().toPromise();
-    this.destacProducts = destacProducts;
-    for (const product of this.destacProducts) {
-      const image = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
-      product.image = `https://gustavo-rodriguez.tech/imagenes_local/${image.ruta_img}`;
-    }
 
     this.filteredProducts = this.products;
 

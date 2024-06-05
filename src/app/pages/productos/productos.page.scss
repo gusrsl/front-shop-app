@@ -41,7 +41,6 @@ ion-button:hover {
 
 .card-image {
   border-radius: 15px;
-  height: 200px;
   object-fit: cover;
 }
 
@@ -51,6 +50,9 @@ ion-card-header {
 
 button-cart {
   margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  border-radius: 15px;
 }
 
 .product-card {
@@ -78,9 +80,10 @@ ion-button.product-button {
   overflow: auto;
 }
 
-.product-title {
-  font-size: 1.2em;
-  font-weight: bold;
+.product-title, .product-price {
+  height: 50px; /* Ajusta este valor según tus necesidades */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-subtitle {
