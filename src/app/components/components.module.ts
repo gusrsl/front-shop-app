@@ -8,13 +8,14 @@ import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { ButtonEditRendererComponent } from './render/button-edit.component';
 
 @NgModule({
   declarations: [
-    // Declara tus componentes aquí
     MenuComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ButtonEditRendererComponent
   ],
   imports: [
     CommonModule,
@@ -23,10 +24,10 @@ import { FooterComponent } from './footer/footer.component';
 
   ],
   exports: [
-    // Exporta tus componentes aquí
     MenuComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ButtonEditRendererComponent
   ]
 })
 export class ComponentsModule { }

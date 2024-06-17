@@ -41,3 +41,23 @@ ion-searchbar {
 }
 
 
+
+.logo {
+  display: flex;
+  justify-content: center; /* Centra el logo horizontalmente */
+  align-items: center; /* Centra el logo verticalmente */
+  padding: 5px; /* Añade un poco de espacio alrededor del logo */
+}
+
+.header-logo {
+  height: auto; /* Mantiene la proporción del logo */
+  width: 80%; /* Ajusta el ancho inicial del logo */
+  max-width: 120px; /* Establece un máximo para el ancho */
+}
+
+/* Media query para pantallas más grandes */
+@media (min-width: 768px) {
+  .header-logo {
+    max-width: 150px; /* Permite que el logo sea un poco más grande en pantallas grandes */
+  }
+}

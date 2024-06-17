@@ -42,6 +42,7 @@ export class MenuComponent implements OnInit {
   async updateUserData() {
     // Espera a que la Promesa se resuelva y luego obtiene la data del usuario
     this.userData = await this.userDataService.getUserData();
+    // console.log('Datos del usuario:', this.userData.type)
 
     // Ahora puedes usar userData
   }

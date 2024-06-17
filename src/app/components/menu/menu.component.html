@@ -9,7 +9,7 @@
                 <!-- Si userData existe, muestra el avatar y el nombre y apellido del usuario -->
                 <ion-card *ngIf="userData; else noUser" style="display: flex; align-items: center;">
                   <ion-avatar class="small-avatar">
-                    <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                    <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png">
                   </ion-avatar>
                   {{userData.nombre}} {{userData.apellido}}
                 </ion-card>
@@ -41,7 +41,7 @@
         </ion-item>
 
         <!-- Si userData existe, muestra las opciones para usuarios que han iniciado sesión -->
-        <div *ngIf="userData">
+        <div *ngIf="!userData || (userData && userData.type !== 'admin')">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/perfil')">
             Cuenta
           </ion-item>
@@ -50,8 +50,23 @@
           </ion-item>
         </div>
 
+        <div *ngIf="userData && userData.type === 'admin'">
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/dashboard')">
+            Dashboard
+          </ion-item>
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/users')">
+            Gestion de Usuarios
+          </ion-item>
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/pay-admin')">
+            Reporte de Pagos
+          </ion-item>
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/products-admin')">
+            Gestion de Productos
+          </ion-item>
+        </div>
+
         <!-- Si userData no existe, muestra las opciones para usuarios que no han iniciado sesión -->
-        <div *ngIf="!userData">
+        <div *ngIf="!userData || (userData && userData.type !== 'admin')">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/login')">
             Iniciar sesion
           </ion-item>

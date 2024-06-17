@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UsersPageRoutingModule } from './users-routing.module';
+import { PayAdminPageRoutingModule } from './pay-admin-routing.module';
 
-import { UsersPage } from './users.page';
-import { AgGridModule } from 'ag-grid-angular';
+import { PayAdminPage } from './pay-admin.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UsersPageRoutingModule,
-    AgGridModule
+    PayAdminPageRoutingModule
   ],
-  declarations: [UsersPage]
+  declarations: [PayAdminPage]
 })
-export class UsersPageModule {}
+export class PayAdminPageModule {}

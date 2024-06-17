@@ -14,21 +14,80 @@ export class DashboardPage implements AfterViewInit {
 
   users = [
     {
-      avatarUrl: 'https://ionicframework.com/docs/demos/api/avatar/avatar.svg',
-      name: 'Usuario 1',
-      email: 'usuario1@example.com'
+      avatarUrl: 'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      name: 'John Doe',
+      email: 'john.doe@example.com'
     },
     {
-      avatarUrl: 'https://ionicframework.com/docs/demos/api/avatar/avatar.svg',
-      name: 'Usuario 2',
-      email: 'usuario2@example.com'
+      avatarUrl: 'https://cdn2.iconfinder.com/data/icons/circle-avatars-1/128/050_girl_avatar_profile_woman_suit_student_officer-512.png',
+      name: 'Jane Smith',
+      email: 'jane.smith@example.com'
     },
     {
-      avatarUrl: 'https://ionicframework.com/docs/demos/api/avatar/avatar.svg',
-      name: 'Usuario 3',
-      email: 'usuario3@example.com'
+      avatarUrl: 'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png',
+      name: 'Bob Johnson',
+      email: 'bob.johnson@example.com'
     },
     // Agrega más usuarios aquí
+  ];
+
+  purchases = [
+    {
+      buyer: 'John Doe',
+      product: 'Nike Air Max 270',
+      amount: 150,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 150
+    },
+    {
+      buyer: 'Jane Smith',
+      product: 'Adidas Ultraboost 21',
+      amount: 180,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 200
+    },
+    {
+      buyer: 'Bob Johnson',
+      product: 'Under Armour HOVR Phantom 2',
+      amount: 130,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 300
+    },
+    {
+      buyer: 'Alice Williams',
+      product: 'Puma Future Rider',
+      amount: 80,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 160
+    },
+    {
+      buyer: 'Bob Johnson',
+      product: 'Nike Air Force 1',
+      amount: 90,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 155
+    },
+    {
+      buyer: 'Alice Williams',
+      product: 'Adidas Stan Smith',
+      amount: 80,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 100
+    },
+    {
+      buyer: 'Charlie Brown',
+      product: 'Puma Suede Classic',
+      amount: 70,
+      date: new Date(),
+      paymentMethod: 'Card',
+      cost: 102
+    },
   ];
 
   constructor() { }

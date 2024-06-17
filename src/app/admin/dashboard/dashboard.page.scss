@@ -1,3 +1,7 @@
+ion-card {
+    border-radius: 20px;
+}
+
 ion-avatar img {
   width: 40px;
   height: 40px;
@@ -21,4 +25,42 @@ th {
   padding-bottom: 12px;
   background-color: #ffc28c;
   color: white;
+}
+
+
+.card-container {
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.list-item {
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.buyer-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.item-detail {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.card-icon {
+  color: #007bff;
 }

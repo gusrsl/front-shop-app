@@ -28,3 +28,80 @@
 /* Theme PrimeNG */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+
+@import 'ag-grid-community/styles/ag-grid.css';
+/* Quartz Theme Specific CSS */
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+
+.modal-50 {
+  align-items: center;
+  justify-content: center;
+
+  &::part(content) {
+      min-width: 50%;
+      min-height: 50%;
+      position: absolute;
+      display: block;
+  }
+}
+
+.modal-80 {
+  align-items: center;
+  justify-content: center;
+
+  &::part(content) {
+      min-width: 80%;
+      min-height: 90%;
+      position: absolute;
+      display: block;
+  }
+}
+
+.modal-90 {
+  align-items: center;
+  justify-content: center;
+
+  &::part(content) {
+      min-width: 90%;
+      min-height: 90%;
+      position: absolute;
+      display: block;
+  }
+}
+
+.modal-6090 {
+  align-items: center;
+  justify-content: center;
+
+  &::part(content) {
+      min-width: 60%;
+      min-height: 90%;
+      position: absolute;
+      display: block;
+  }
+}
+
+.modal-100 {
+  align-items: center;
+  justify-content: center;
+
+  &::part(content) {
+      min-width: 100%;
+      min-height: 100%;
+      position: absolute;
+      display: block;
+  }
+}
+
+.modal-50-detalle {
+  align-items: center;
+  justify-content: center;
+
+  &::part(content) {
+      min-width: 50%;
+      min-height: 90%;
+      position: absolute;
+      display: block;
+  }
+}

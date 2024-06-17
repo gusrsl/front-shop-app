@@ -42,7 +42,19 @@ const routes: Routes = [
   {
     path: 'payment',
     loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
+  },  {
+    path: 'pay-admin',
+    loadChildren: () => import('./admin/pay-admin/pay-admin.module').then( m => m.PayAdminPageModule)
+  },
+  {
+    path: 'products-admin',
+    loadChildren: () => import('./admin/products-admin/products-admin.module').then( m => m.ProductsAdminPageModule)
+  },
+  {
+    path: 'crud-products-admin',
+    loadChildren: () => import('./admin/crud-products-admin/crud-products-admin.module').then( m => m.CrudProductsAdminPageModule)
   }
+
 
 
 

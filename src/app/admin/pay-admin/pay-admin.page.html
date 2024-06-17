@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true">
+  <!-- Payment Intents Table -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Payment Intents</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>ID</ion-col>
+          <ion-col>Amount</ion-col>
+          <ion-col>Currency</ion-col>
+          <ion-col>Status</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let intent of paymentIntents?.data">
+          <ion-col>{{ intent.id }}</ion-col>
+          <ion-col>{{ intent.amount / 100 | currency }}</ion-col>
+          <ion-col>{{ intent.currency | uppercase }}</ion-col>
+          <ion-button fill="outline" [ngClass]="{'success': intent.status === 'succeeded', 'other': intent.status !== 'succeeded'}">{{ intent.status }}</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Charges Table -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Charges</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>ID</ion-col>
+          <ion-col>Amount</ion-col>
+          <ion-col>Currency</ion-col>
+          <ion-col>Status</ion-col>
+          <ion-col>Created</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let charge of charges?.data">
+          <ion-col>{{ charge.id }}</ion-col>
+          <ion-col>{{ charge.amount / 100 | currency }}</ion-col>
+          <ion-col>{{ charge.currency }}</ion-col>
+          <ion-col>{{ charge.currency | uppercase }}</ion-col>
+          <ion-button fill="outline" [ngClass]="{'success': charge.status === 'succeeded', 'other': charge.status !== 'succeeded'}">{{ charge.status }}</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

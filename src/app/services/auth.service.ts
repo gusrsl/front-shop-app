@@ -67,4 +67,24 @@ export class AuthService {
   async getToken() {
     return await this._storage?.get('token');
   }
+
+  createUser(user: any): Observable<any> {
+    return this.http.post(`${this.API_URL}users`, user);
+  }
+
+  findUser(nombreUsuario: string): Observable<any> {
+    return this.http.get(`${this.API_URL}users/${nombreUsuario}`);
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.API_URL}users`);
+  }
+
+  updateUser(user: any): Observable<any> {
+    return this.http.put(`${this.API_URL}users`, user);
+  }
+
+  deleteUser(nombreUsuario: string): Observable<any> {
+    return this.http.delete(`${this.API_URL}users/${nombreUsuario}`);
+  }
 }

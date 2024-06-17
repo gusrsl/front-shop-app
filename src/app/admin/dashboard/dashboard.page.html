@@ -1,61 +1,82 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <!-- Resumen de ventas -->
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Resumen de ventas</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="ion-padding">
+              <canvas id="salesChart"></canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
- <ion-content>
-  <ion-row>
-    <!-- Resumen de ventas -->
-    <ion-col size="6">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Resumen de ventas</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <canvas id="salesChart" style="width: 100%; height: 300px;"></canvas>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
+      <!-- Resumen de usuarios -->
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Resumen de usuarios</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="ion-padding">
+              <canvas id="userStatsChart"></canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-    <!-- Resumen de usuarios -->
-    <ion-col size="6">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Resumen de usuarios</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <canvas id="userStatsChart" style="width: 100%; height: 300px;"></canvas>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
+    <!-- Tabla de usuarios -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Ultimos usuarios registrados</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let user of users">
+                <ion-avatar slot="start">
+                  <img [src]="user.avatarUrl" />
+                </ion-avatar>
+                <ion-label>
+                  <h2>{{ user.name }}</h2>
+                  <p>{{ user.email }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-<ion-row>
-  <!-- Tabla de usuarios -->
-  <ion-col size="12">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Lista de usuarios</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <table>
-          <thead>
-            <tr>
-              <th>Avatar</th>
-              <th>Nombre</th>
-              <th>Email</th>
-              <!-- Agrega más columnas aquí -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users">
-              <td><ion-avatar><img [src]="user.avatarUrl" /></ion-avatar></td>
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <!-- Agrega más celdas aquí -->
-            </tr>
-          </tbody>
-        </table>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-</ion-row>
- </ion-content>
-
-
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="card-container">
+          <ion-card-header class="card-header">
+            <ion-card-title class="card-title">Últimas compras realizadas</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-content">
+            <ion-list>
+              <ion-item *ngFor="let purchase of purchases" class="list-item">
+                <ion-label>
+                  <h2 class="buyer-name">{{ purchase.buyer }}</h2>
+                  <p class="item-detail">{{ purchase.product }}</p>
+                  <p class="item-detail">Cantidad: {{ purchase.amount }}</p>
+                  <p class="item-detail">Costo: {{ purchase.cost }}</p>
+                  <p class="item-detail">Fecha: {{ purchase.date | date }}</p>
+                  <p class="item-detail">Método de pago: {{ purchase.paymentMethod }}</p>
+                </ion-label>
+                <ion-icon slot="end" name="card-outline" class="card-icon"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -20,6 +20,7 @@ import { AuthModule } from './auth-component/auth.module';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,8 @@ import { CarouselModule } from 'primeng/carousel';
     AuthModule, // Añade AuthModule aquí
     CardModule,
     ButtonModule,
-    CarouselModule
-
-
-
+    CarouselModule,
+    AgGridModule // Añade AgGridModule aquí
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
