@@ -1,24 +1,12 @@
 pipeline {
     agent any
-    environment {
-        NODE_VERSION = '22.3.0'  // Versión de Node.js que necesitas
-    }
     stages {
-        stage('Initialize') {
-            steps {
-                script {
-                    // Preparar el entorno
-                    sh 'nvm install $NODE_VERSION'
-                    sh 'nvm use $NODE_VERSION'
-                }
-            }
-        }
         stage('Build Frontend') {
             steps {
                 script {
                     dir('/var/lib/jenkins/workspace/primerjenkins') {
                         // Instalar dependencias
-                        sh 'npm i'
+                        sh 'npm install'
                         // Construir el frontend
                         sh 'ionic cap build android --prod'
                     }
