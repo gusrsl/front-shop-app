@@ -17,11 +17,11 @@ pipeline {
             steps {
                 script {
                     // Remover el directorio existente
-                    sh 'rm -r /home/admin/web/gustavo-rodriguez.tech/public_html'
+                    sh 'sudo rm -r /home/admin/web/gustavo-rodriguez.tech/public_html'
                     // Crear nuevo directorio
-                    sh 'mkdir /home/admin/web/gustavo-rodriguez.tech/public_html'
+                    sh 'sudo mkdir /home/admin/web/gustavo-rodriguez.tech/public_html'
                     // Copiar archivos construidos al nuevo directorio
-                    sh 'cp /var/lib/jenkins/workspace/primerjenkins/www/* /home/admin/web/gustavo-rodriguez.tech/public_html -R'
+                    sh 'sudo cp /var/lib/jenkins/workspace/primerjenkins/www/* /home/admin/web/gustavo-rodriguez.tech/public_html -R'
                 }
             }
         }
