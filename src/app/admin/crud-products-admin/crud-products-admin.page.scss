@@ -1,0 +1,38 @@
+ion-card {
+  margin: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  ion-card-header {
+    background-color: #f8f8f8;
+  }
+
+  ion-card-title {
+    color: #333;
+  }
+
+  ion-card-content {
+    ion-item {
+      --background: #fff;
+      --border-radius: 0;
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      --padding-end: 0;
+      --detail-icon-color: #999;
+      --detail-icon-opacity: 1;
+    }
+
+    ion-label {
+      color: #666;
+    }
+
+    ion-input {
+      --padding-start: 8px;
+      --padding-end: 8px;
+    }
+  }
+}
+
+ion-button {
+  margin: 20px;
+  --border-radius: 4px;
+}

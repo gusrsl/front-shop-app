@@ -7,7 +7,7 @@
             <ion-item lines="none">
               <ion-label>
                 <!-- Si userData existe, muestra el avatar y el nombre y apellido del usuario -->
-                <ion-card *ngIf="userData; else noUser" style="display: flex; align-items: center;">
+                <ion-card *ngIf="userData; else noUser" style="display: flex; align-items: center;   border: none !important; box-shadow: none !important;">
                   <ion-avatar class="small-avatar">
                     <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png">
                   </ion-avatar>
@@ -16,7 +16,7 @@
 
                 <!-- Si userData no existe, muestra un mensaje para que el usuario inicie sesión -->
                 <ng-template #noUser>
-                  <div>Inicia sesión para disfrutar de una experiencia completa</div>
+                  <div>Inicia sesión para una experiencia completa</div>
                 </ng-template>
               </ion-label>
             </ion-item>

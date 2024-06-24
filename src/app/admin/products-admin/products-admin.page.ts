@@ -109,17 +109,17 @@ export class ProductsAdminPage implements OnInit {
   }
 
   editar(data: any){
-    this.mostrarCrud(data.rowData.idcontramuestras)
+    this.mostrarCrud(data.rowData)
   }
 
   async eliminar(data: any){
 
   }
 
-  async mostrarCrud(id : any){
+  async mostrarCrud(product : any){
     const modal = await this.modalCtrl.create({
       component: CrudProductsAdminPage, backdropDismiss:false, cssClass:'modal-90',
-      componentProps: { idregistro: id }
+      componentProps: { product: product }
     });
     modal.onDidDismiss().then(data => {
       this.obtenerRegistros();
