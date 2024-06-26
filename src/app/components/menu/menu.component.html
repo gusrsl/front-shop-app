@@ -34,40 +34,47 @@
     <ion-list class="menu-list">
       <ion-menu-toggle auto-hide="false">
         <ion-item class="menu-item slide-in" (click)="navigateTo('/home')">
+          <ion-icon name="home" slot="start"></ion-icon>
           Home
         </ion-item>
         <ion-item class="menu-item slide-in" (click)="navigateTo('/productos')">
+          <ion-icon name="basket" slot="start"></ion-icon>
           Productos
         </ion-item>
 
-        <!-- Si userData existe, muestra las opciones para usuarios que han iniciado sesión -->
         <div *ngIf="!userData || (userData && userData.type !== 'admin')">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/perfil')">
+            <ion-icon name="person" slot="start"></ion-icon>
             Cuenta
           </ion-item>
           <ion-item class="menu-item slide-in" (click)="navigateTo('/cartshop')">
+            <ion-icon name="cart" slot="start"></ion-icon>
             Carrito
           </ion-item>
         </div>
 
         <div *ngIf="userData && userData.type === 'admin'">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/dashboard')">
+            <ion-icon name="stats-chart" slot="start"></ion-icon>
             Dashboard
           </ion-item>
           <ion-item class="menu-item slide-in" (click)="navigateTo('/users')">
+            <ion-icon name="people" slot="start"></ion-icon>
             Gestion de Usuarios
           </ion-item>
           <ion-item class="menu-item slide-in" (click)="navigateTo('/pay-admin')">
+            <ion-icon name="wallet" slot="start"></ion-icon>
             Reporte de Pagos
           </ion-item>
           <ion-item class="menu-item slide-in" (click)="navigateTo('/products-admin')">
+            <ion-icon name="pricetags" slot="start"></ion-icon>
             Gestion de Productos
           </ion-item>
         </div>
 
-        <!-- Si userData no existe, muestra las opciones para usuarios que no han iniciado sesión -->
         <div *ngIf="!userData || (userData && userData.type !== 'admin')">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/login')">
+            <ion-icon name="log-in" slot="start"></ion-icon>
             Iniciar sesion
           </ion-item>
         </div>

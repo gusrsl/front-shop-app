@@ -1,110 +1,55 @@
-ion-button {
-  transition: transform 0.3s ease-in-out;
-  border-radius: 15px;
+.ion-content {
+  --background: #f5f5f5;
 }
 
-ion-button:hover {
-  transform: scale(1.1);
+.filter-card {
+  padding: 1rem;
 }
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.subpages {
-  display: flex;
-  gap: 10px;
-}
-
-.logo {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.slide-image {
-  width: 100%;
-  height: auto;
-}
-
-.card-products {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 350px;
-  border-radius: 15px;
-  overflow: hidden; /* Esto es para que la imagen también tenga los bordes redondeados */
-}
-
-.card-image {
-  border-radius: 15px;
-  object-fit: cover;
-}
-
-ion-card-header {
-  flex-grow: 1;
-}
-
-button-cart {
-  margin-top: auto;
-  position: absolute;
-  bottom: 0;
-  border-radius: 15px;
+.header-card {
+  margin-bottom: 1rem;
 }
 
 .product-card {
-  border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  height: 350px; /* Ajusta este valor según tus necesidades */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  .product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+  ion-card-header {
+    text-align: center;
+  }
+  ion-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .view-button {
+    margin-top: 1rem;
+  }
 }
 
-.product-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-ion-button.product-button {
-  margin-top: auto;
-}
-
-.product-card-header {
-  background-color: #f1f1f1;
-  padding: 10px;
+.price-range-text {
   text-align: center;
-  flex-grow: 1;
-  overflow: auto;
+  font-weight: bold;
+  margin-top: 0.5rem;
 }
 
-.product-title, .product-price {
-  height: 50px; /* Ajusta este valor según tus necesidades */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.product-subtitle {
-  font-size: 1em;
-  color: #666;
-}
-
-.product-button {
-  transition: transform 0.3s ease-in-out;
-  border-radius: 15px;
-}
-
-.product-button:hover {
-  transform: scale(1.1);
-}
-
-.my-custom-class {
-  --background: rgba(0, 0, 0, 0.8);
-  --spinner-color: #fff;
-}
-
-.ion-content {
-  margin-top: 100px; /* Ajusta este valor según la altura de tu encabezado */
+.pagination-row {
+  margin-top: 2rem;
+  ion-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-center {
+    text-align: center;
+  }
 }

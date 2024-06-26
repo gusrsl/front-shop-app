@@ -68,13 +68,11 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <!-- Apartado para agregar nuevas imágenes -->
       <ion-item lines="none" class="custom-file-input">
         <ion-label position="stacked">Agregar Nueva Imagen</ion-label>
-        <ion-button fill="outline" slot="start" onclick="document.getElementById('fileInput').click()">Seleccionar Imagen</ion-button>
-        <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+        <ion-button fill="outline" slot="start" (click)="fileInput.click()">Seleccionar Imagen</ion-button>
+        <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
       </ion-item>
-      <!-- Previsualización de la imagen seleccionada -->
       <div *ngIf="selectedImage">
         <ion-card style="width: 200px; height: 200px;">
           <ion-img [src]="selectedImage" style="width: 100%; height: 100%; object-fit: cover;"></ion-img>

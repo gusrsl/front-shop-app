@@ -1,5 +1,7 @@
 export interface Product {
-  uu_id: string;
+  stock: number;
+  category: string;
+  uu_id: any;
   codigo_alfa: string;
   descripcion: string;
   precio: number;

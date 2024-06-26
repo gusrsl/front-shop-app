@@ -3,9 +3,9 @@
     <ion-row>
       <!-- Columna del filtro -->
       <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
-        <ion-card>
+        <ion-card class="filter-card">
           <ion-toolbar>
-            <ion-title>Productos</ion-title>
+            <ion-title>Filtros</ion-title>
             <ion-buttons slot="end">
               <ion-button (click)="toggleFilter()">
                 <ion-icon slot="icon-only" name="funnel"></ion-icon>
@@ -15,11 +15,55 @@
           <ion-toolbar>
             <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="search()"></ion-searchbar>
           </ion-toolbar>
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Marca</ion-label>
+              <ion-select [(ngModel)]="filter.marca" (ionChange)="filterProducts()">
+                <ion-select-option *ngFor="let marca of getUniqueBrands()" [value]="marca">{{ marca }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Color 1</ion-label>
+              <ion-select [(ngModel)]="filter.color_1" (ionChange)="filterProducts()">
+                <ion-select-option *ngFor="let color of getUniqueColors('color_1')" [value]="color">{{ color }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Color 2</ion-label>
+              <ion-select [(ngModel)]="filter.color_2" (ionChange)="filterProducts()">
+                <ion-select-option *ngFor="let color of getUniqueColors('color_2')" [value]="color">{{ color }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Precio</ion-label>
+              <ion-range min="0" max="500" step="10" dualKnobs="true" [(ngModel)]="filter.precio" (ionChange)="filterProducts()">
+                <ion-icon size="small" slot="start" name="cash-outline"></ion-icon>
+                <ion-icon slot="end" name="cash-outline"></ion-icon>
+              </ion-range>
+              <div class="price-range-text">
+                ${{filter.precio.lower}} - ${{filter.precio.upper}}
+              </div>
+            </ion-item>
+            <ion-item>
+              <ion-label>Días de Entrega</ion-label>
+              <ion-range min="0" max="30" step="1" [(ngModel)]="filter.dias_entrega" (ionChange)="filterProducts()">
+                <ion-icon size="small" slot="start" name="time-outline"></ion-icon>
+                <ion-icon slot="end" name="time-outline"></ion-icon>
+              </ion-range>
+              <div class="price-range-text">
+                {{filter.dias_entrega}} días
+              </div>
+            </ion-item>
+            <ion-item>
+              <ion-label>Disponibilidad</ion-label>
+              <ion-toggle [(ngModel)]="availableOnly" (ionChange)="filterProducts()"></ion-toggle>
+            </ion-item>
+          </ion-card-content>
         </ion-card>
       </ion-col>
 
       <ion-col size="12" size-sm="6" size-md="8" size-lg="9">
-        <ion-card>
+        <ion-card class="header-card">
           <ion-card-header>
             <ion-card-title>Todos los Zapatos</ion-card-title>
           </ion-card-header>
@@ -29,42 +73,37 @@
           <ion-row>
             <!-- Repite este bloque para cada producto en tu lista de productos -->
             <ion-col size="6" size-md="4" size-lg="3" *ngFor="let product of filteredProducts">
-              <ion-card class="card-products">
-                <img [src]="product.images[0]" [alt]="product.descripcion" class="card-image"/> <!-- Aquí se usa la propiedad image del producto -->
+              <ion-card class="product-card">
+                <img [src]="product.images[0]" [alt]="product.descripcion" class="product-image"/>
                 <ion-card-header>
                   <ion-card-title>{{product.descripcion}}</ion-card-title>
                   <ion-card-subtitle>${{product.precio}}</ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content>
-                  <p>Stock: 20</p> <!-- Aquí se usa un valor quemado para el stock -->
+                  <p>Stock: {{product.stock}}</p>
                 </ion-card-content>
-                <ion-button expand="full" color="primary" class="button-cart" (click)="goToProductDetails(product)">VER</ion-button>
+                <ion-button expand="full" color="primary" class="view-button" (click)="goToProductDetails(product)">VER</ion-button>
               </ion-card>
             </ion-col>
             <!-- Fin del bloque para cada producto -->
           </ion-row>
-          <ion-row>
-            <ion-col>
-              <!-- Botón para ir a la página anterior -->
-              <ion-button (click)="previousPage()" [disabled]="currentPage === 1">
+          <ion-row class="pagination-row">
+            <ion-col size="4" class="text-center">
+              <ion-button fill="clear" (click)="previousPage()" [disabled]="currentPage === 1">
                 <ion-icon name="arrow-back"></ion-icon>
               </ion-button>
             </ion-col>
-            <ion-col>
-              <!-- Muestra el número de la página actual -->
+            <ion-col size="4" class="text-center">
               <p>{{currentPage}}</p>
             </ion-col>
-            <ion-col>
-              <!-- Botón para ir a la página siguiente -->
-              <ion-button (click)="nextPage()" [disabled]="currentPage * pageSize >= products.length">
+            <ion-col size="4" class="text-center">
+              <ion-button fill="clear" (click)="nextPage()" [disabled]="currentPage * pageSize >= products.length">
                 <ion-icon name="arrow-forward"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
-  </ion-row>
-</ion-grid>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-
-

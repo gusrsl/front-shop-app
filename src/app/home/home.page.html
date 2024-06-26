@@ -1,140 +1,210 @@
-<ion-content id="main-content">
-    <swiper-container [autoplay]="{ delay: 7000 }">
+ <ion-content id="main-content">
+    <!-- Swiper for image slides -->
+    <swiper-container [autoplay]="{ delay: 7000 }" loop="true">
       <swiper-slide *ngFor="let image of images">
-        <img [src]="image" alt="Slide image"  class="my-image">
+        <img [src]="image" alt="Slide image" class="my-image">
       </swiper-slide>
     </swiper-container>
 
-<div style="background-color: rgb(18, 41, 84);margin: 0; padding: 0;">
-  <svg style="  background-color: #ffffff;   margin: 0; padding: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="rgb(18, 41, 84)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-  </svg>
-    <h2 class="cat-title">Categorias</h2>
-  <ion-card class="company-card">
-    <ion-card-header>
-      <ion-card-title class="company-title">Nuestras Categorías</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="company-description-container">
-        <p class="company-description">
-          Ofrecemos una amplia selección de zapatos deportivos de alta calidad para hombres, mujeres y niños. Nuestros productos son de las mejores marcas y están diseñados para brindar comodidad y rendimiento. Ya sea que estés buscando zapatillas para correr, zapatos de baloncesto o zapatillas de moda, tenemos lo que necesitas. Nuestro equipo está aquí para ayudarte a encontrar el par perfecto para ti.
-        </p>
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <svg style="  background-color: rgb(18, 41, 84);   margin: 0; padding: 0; display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="#ffffff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-  </svg>
-</div>
+    <!-- Brands Section -->
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12" size-md="6" size-lg="4" class="brand-card">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
+              <ion-card-title>Adidas</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img src="https://gustavo-rodriguez.tech/imagenes_local/adidaslogos.jpg" alt="Card" />
+              <p>
+                Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
+        <ion-col size="12" size-md="6" size-lg="4" class="brand-card">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
+              <ion-card-title>Nike</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img src="https://gustavo-rodriguez.tech/imagenes_local/nikelogo.jpeg" alt="Card" />
+              <p>
+                Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-center ion-align-items-center">
-      <ion-col size="12" size-md="6" size-lg="4" style="
-      display: flex;
-      justify-content: center;
-      align-items: center;">
-        <ion-card style="width: 360px; border-radius: 15px;">
-          <ion-card-header>
-            <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
-            <ion-card-title>Adidas</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <img src="https://gustavo-rodriguez.tech/imagenes_local/adidaslogos.jpg" alt="Card" />
-            <p style="  text-align: center;">
-              Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
-            </p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="12" size-md="6" size-lg="4" style="
-      display: flex;
-      justify-content: center;
-      align-items: center;">
-        <ion-card style="width: 360px; border-radius: 15px;">
-          <ion-card-header>
-            <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
-            <ion-card-title>Nike</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <img src="https://gustavo-rodriguez.tech/imagenes_local/nikelogo.jpeg" alt="Card" />
-            <p style="  text-align: center;">
-              Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
-            </p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="12" size-md="6" size-lg="4" style="
-      display: flex;
-      justify-content: center;
-      align-items: center;">
-        <ion-card style="width: 360px; border-radius: 15px;">
-          <ion-card-header>
-            <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
-            <ion-card-title>Puma</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
+        <ion-col size="12" size-md="6" size-lg="4" class="brand-card">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Nuestras marcas</ion-card-subtitle>
+              <ion-card-title>Puma</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
               <img src="https://gustavo-rodriguez.tech/imagenes_local/pumalogo.png" alt="Card"/>
-            <p style="text-align: center;">
-              Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
-            </p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+              <p>
+                Ofrecemos envío rápido y seguro a todo el país. Realiza tu compra desde la comodidad de tu hogar y recibe tus productos en la puerta de tu casa. Además, ofrecemos opciones de seguimiento para que siempre sepas dónde está tu pedido.
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-<svg style="  background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-  <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-</svg>
+    <svg style="background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
 
-<div style="  background-color: #ffffff; font-size:150%;" >
-  <h2 class="release-title">Nuevos lanzamientos</h2>
-</div>
+    <!-- New Releases Section -->
+    <div style="background-color: #ffffff; font-size:150%;">
+      <h2 class="release-title">Nuevos lanzamientos</h2>
+    </div>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <ion-grid class="release-grid" style="background-color: rgb(255, 172, 83);">
-    <ion-row class="release-row">
-      <ion-col class="release-card-col" *ngFor="let shoe of newReleases">
-        <ion-card class="release-card">
-          <ion-card-header class="release-card-header">
-            <ion-card-subtitle class="release-card-subtitle">{{shoe.brand}}</ion-card-subtitle>
-            <ion-card-title class="release-card-title">{{shoe.name}}</ion-card-title>
-          </ion-card-header>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
-          <ion-card-content class="release-card-content">
-            <img class="release-card-image" [src]="shoe.image" alt="Shoe image" />
-            <p class="release-card-description">
-              {{shoe.description}}
-            </p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid class="release-grid" style="background-color: rgb(255, 172, 83);">
+      <ion-row class="release-row">
+        <ion-col size="12" size-sm="6" size-md="4" size-lg="3" class="release-card-col" *ngFor="let shoe of newReleases">
+          <ion-card class="release-card">
+            <ion-card-header class="release-card-header">
+              <ion-card-subtitle class="release-card-subtitle">{{shoe.brand}}</ion-card-subtitle>
+              <ion-card-title class="release-card-title">{{shoe.name}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="release-card-content">
+              <img class="release-card-image" [src]="shoe.image" alt="Shoe image" />
+              <p class="release-card-description">
+                {{shoe.description}}
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <svg style="  background-color: rgb(255, 172, 83);;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="#ffffff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-  </svg>
+    <svg style="background-color: rgb(255, 172, 83);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#ffffff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
 
-<ion-card class="company-card">
-    <ion-card-header>
-      <ion-card-title class="company-title">Nuestra Empresa</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="company-description-container">
-        <p class="company-description">
-          Nuestra empresa es un proveedor líder de zapatos deportivos de alta calidad. Estamos comprometidos a ofrecer un servicio al cliente excepcional y garantizar que nuestros clientes tengan una gran experiencia con nosotros. Nuestro equipo es dedicado, profesional y siempre está listo para asistir con tus necesidades. Creemos en la innovación, la integridad y en ofrecer valor a nuestros clientes. Constantemente nos esforzamos por mejorar e innovar, asegurándonos de mantenernos a la vanguardia de nuestra industria. Gracias por elegirnos.
-        </p>
-      </div>
-    </ion-card-content>
-  </ion-card>
+    <!-- Featured Products Section -->
+    <div style="background-color: #ffffff;">
+      <h2 class="featured-title">Productos Destacados</h2>
+      <ion-grid class="featured-grid">
+        <ion-row class="featured-row">
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3" class="featured-card-col" *ngFor="let product of featuredProducts">
+            <ion-card class="featured-card">
+              <ion-card-header class="featured-card-header">
+                <ion-card-title class="featured-card-title">{{product.name}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content class="featured-card-content">
+                <img class="featured-card-image" [src]="product.image" alt="Product image" />
+                <p class="featured-card-description">
+                  {{product.description}}
+                </p>
+                <ion-button expand="full" color="primary">Comprar Ahora</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
+    <svg style="background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
 
-<br><br><br>
+    <!-- Special Offers Section -->
+    <div style="background-color: #ffffff;">
+      <h2 class="offers-title">Ofertas Especiales</h2>
+      <ion-grid class="offers-grid">
+        <ion-row class="offers-row">
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3" class="offers-card-col" *ngFor="let offer of specialOffers">
+            <ion-card class="offers-card">
+              <ion-card-header class="offers-card-header">
+                <ion-card-title class="offers-card-title">{{offer.name}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content class="offers-card-content">
+                <img class="offers-card-image" [src]="offer.image" alt="Offer image" />
+                <p class="offers-card-description">
+                  {{offer.description}}
+                </p>
+                <ion-button expand="full" color="primary">Ver Oferta</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
+    <svg style="background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
 
+    <!-- Customer Testimonials Section -->
+    <div style="background-color: #ffffff;">
+      <h2 class="testimonials-title">Testimonios de Clientes</h2>
+      <ion-grid class="testimonials-grid">
+        <ion-row class="testimonials-row">
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3" class="testimonials-card-col" *ngFor="let testimonial of customerTestimonials">
+            <ion-card class="testimonials-card">
+              <ion-card-header class="testimonials-card-header">
+                <ion-card-subtitle class="testimonials-card-subtitle">{{testimonial.name}}</ion-card-subtitle>
+                <ion-card-title class="testimonials-card-title">{{testimonial.title}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content class="testimonials-card-content">
+                <p class="testimonials-card-description">
+                  "{{testimonial.feedback}}"
+                </p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
+    <svg style="background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
 
+    <!-- Newsletter Subscription Section -->
+    <div style="background-color: #ffffff;">
+      <h2 class="newsletter-title">Suscripción al Boletín</h2>
+      <ion-grid class="newsletter-grid">
+        <ion-row class="newsletter-row">
+          <ion-col size="12" class="newsletter-card-col">
+            <ion-card class="newsletter-card">
+              <ion-card-content class="newsletter-card-content">
+                <ion-item>
+                  <ion-label position="floating">Correo Electrónico</ion-label>
+                  <ion-input type="email" [(ngModel)]="subscriberEmail"></ion-input>
+                </ion-item>
+                <ion-button expand="full" color="primary" (click)="subscribeToNewsletter()">Suscribirse</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <svg style="background-color: #ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgb(255, 172, 83)" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+
+    <!-- Company Info Section -->
+    <ion-card class="company-card">
+      <ion-card-header>
+        <ion-card-title class="company-title">Nuestra Empresa</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="company-description-container">
+          <p class="company-description">
+            Nuestra empresa es un proveedor líder de zapatos deportivos de alta calidad. Estamos comprometidos a ofrecer un servicio al cliente excepcional y garantizar que nuestros clientes tengan una gran experiencia con nosotros. Nuestro equipo es dedicado, profesional y siempre está listo para asistir con tus necesidades. Creemos en la innovación, la integridad y en ofrecer valor a nuestros clientes. Constantemente nos esforzamos por mejorar e innovar, asegurándonos de mantenernos a la vanguardia de nuestra industria. Gracias por elegirnos.
+          </p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

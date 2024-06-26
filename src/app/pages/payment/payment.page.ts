@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/paymentdata.service';
 import { loadStripe } from '@stripe/stripe-js';
 import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';  // Import the autoTable plugin
 import { ToastController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
-
 
 interface CartData {
   cart: any[];
@@ -26,31 +26,41 @@ export class PaymentPage implements OnInit {
   discount: number = 0;
   shippingCharge: number = 0;
   total: number = 0;
-  cardNumber: any;
-  expiryDate: any;
-  cvc: any;
+  iva: number = 0;
   stripe: any;
   cardElement: any;
 
-  constructor(private cartService: CartService, private http: HttpClient, private toastController: ToastController) { }
+  constructor(
+    private cartService: CartService,
+    private http: HttpClient,
+    private toastController: ToastController
+  ) {}
 
-async ngOnInit() {
-  this.cartService.currentData.subscribe((data: null | CartData) => {
-    if (data) {
-      this.cart = data.cart;
-      this.subtotal = data.subtotal;
-      this.discount = data.discount;
-      this.shippingCharge = data.shippingCharge;
-      this.total = data.total;
-    }
-  });
+  async ngOnInit() {
+    this.cartService.currentData.subscribe((data: null | CartData) => {
+      if (data) {
+        this.cart = data.cart;
+        this.subtotal = data.subtotal;
+        this.discount = data.discount;
+        this.shippingCharge = data.shippingCharge;
+        this.total = data.total;
+        this.calculateIVA();
+      }
+    });
 
-  this.stripe = await loadStripe('pk_test_51NmNUMBl7yWw4itgGvqJOQjZgKJSBc3CUhnS7LtwK7t3LSFtvHLD7OzjKAQRjNBosUEV5PdQVNFXcgUZbv6C8XxC00187ZcHXD');
-  const elements = this.stripe.elements();
-  this.cardElement = elements.create('card');
-  this.cardElement.mount('#card-element');
-}
+    this.stripe = await loadStripe('pk_test_51NmNUMBl7yWw4itgGvqJOQjZgKJSBc3CUhnS7LtwK7t3LSFtvHLD7OzjKAQRjNBosUEV5PdQVNFXcgUZbv6C8XxC00187ZcHXD');
+    const elements = this.stripe.elements();
+    this.cardElement = elements.create('card');
+    this.cardElement.mount('#card-element');
+  }
+
+  calculateIVA() {
+    this.iva = this.subtotal * 0.12;
+    this.total += this.iva;
+  }
+
   async processCardPayment() {
+    await this.showToast('Procesando pago...', 'primary');
     const { error, paymentMethod } = await this.stripe.createPaymentMethod({
       type: 'card',
       card: this.cardElement,
@@ -58,23 +68,29 @@ async ngOnInit() {
 
     if (error) {
       console.error('Error creating payment method:', error);
+      this.showToast('Error creando el método de pago', 'danger');
     } else {
-      const { clientSecret } = await this.http.post(`${environment.API_URL}payments/create-payment-intent`, { amount: this.total }).toPromise() as { clientSecret: string };
+      const { clientSecret } = await this.http
+        .post(`${environment.API_URL}payments/create-payment-intent`, { amount: this.total })
+        .toPromise() as { clientSecret: string };
       const { error: confirmError, paymentIntent } = await this.stripe.confirmCardPayment(clientSecret, {
         payment_method: paymentMethod.id,
       });
 
       if (confirmError) {
         console.error('Error confirming card payment:', confirmError);
+        this.showToast('Error confirmando el pago', 'danger');
       } else if (paymentIntent.status === 'succeeded') {
         console.log('Payment succeeded with payment intent:', paymentIntent);
-        this.generateInvoice(paymentIntent);
+        this.showToast('Pago realizado con éxito', 'success');
+        await this.generateInvoice(paymentIntent);
       }
     }
   }
 
-  async generateInvoice(paymentIntent: any):Promise<void> {
-    // Define la interfaz de la factura
+  async generateInvoice(paymentIntent: any): Promise<void> {
+    await this.showToast('Generando factura...', 'primary');
+
     interface Invoice {
       numeroFactura: string;
       fecha: Date;
@@ -82,87 +98,76 @@ async ngOnInit() {
       subtotal: number;
       descuento: number;
       cargoEnvio: number;
+      iva: number;
       total: number;
     }
 
-    // Crea la factura a partir del objeto paymentIntent
     const invoice: Invoice = {
       numeroFactura: paymentIntent.id,
       fecha: new Date(paymentIntent.created * 1000),
       items: this.cart.map(item => ({
         descripcion: item.product.descripcion,
         cantidad: item.quantity,
-        precio: item.product.precio,
+        precio: parseFloat(item.product.precio).toFixed(2),
       })),
-      subtotal: this.subtotal,
-      descuento: this.discount,
-      cargoEnvio: this.shippingCharge,
-      total: this.total,
+      subtotal: parseFloat(this.subtotal.toFixed(2)),
+      descuento: parseFloat(this.discount.toFixed(2)),
+      cargoEnvio: parseFloat(this.shippingCharge.toFixed(2)),
+      iva: parseFloat(this.iva.toFixed(2)),
+      total: parseFloat(this.total.toFixed(2)),
     };
 
-    // Crea un nuevo documento PDF
     const doc = new jsPDF();
 
-    // Agrega el logo de la empresa
     const logo = new Image();
     logo.src = '../../../assets/logodarmacio.png';
     doc.addImage(logo, 'PNG', 10, 10, 50, 20);
 
-    // Encabezado de la factura
     doc.setFontSize(16);
-    doc.text('Factura', 105, 15, { align: 'center' });
+    doc.text('Nota de Venta', 105, 15, { align: 'center' });
     doc.setFontSize(10);
     doc.text('Darmacio', 105, 30, { align: 'center' });
     doc.text('123 Calle Principal, Ciudad, Ecuador', 105, 40, { align: 'center' });
     doc.text('Teléfono: +1234567890 | Correo electrónico: info@darmacio.com', 105, 50, { align: 'center' });
 
-    // Información de la factura
     doc.setFontSize(8);
     doc.text(`Número de Factura: ${invoice.numeroFactura}`, 10, 70);
     doc.text(`Fecha: ${invoice.fecha.toDateString()}`, 10, 75);
 
-    // Tabla de elementos
     const tableHeaders = [['Descripción', 'Cantidad', 'Precio']];
     const tableData = invoice.items.map(item => [item.descripcion, item.cantidad.toString(), `$${item.precio}`]);
-    let y = 85;
-    const startY = y;
-    const tableHeight = tableData.length * 6 + 10;
-    doc.rect(10, y, 190, tableHeight);
-    y += 6;
-    doc.setFontSize(8);
-    tableHeaders[0].forEach((header, index) => {
-      doc.text(header, 15 + index * 60, y, { align: 'left' });
-    });
-    y += 4;
-    tableData.forEach(row => {
-      row.forEach((cell, index) => {
-        doc.text(cell, 15 + index * 60, y, { align: 'left' });
-      });
-      y += 6;
+
+    (doc as any).autoTable({
+      head: tableHeaders,
+      body: tableData,
+      startY: 85,
+      theme: 'grid',
+      headStyles: { fillColor: [22, 160, 133] },
+      styles: { fontSize: 8, cellPadding: 2 },
     });
 
-    // Resumen de la factura
-    const summaryY = y + 5;
-    doc.text(`Subtotal: $${invoice.subtotal}`, 10, summaryY);
-    doc.text(`Descuento: $${invoice.descuento}`, 10, summaryY + 6);
-    doc.text(`Cargo de Envío: $${invoice.cargoEnvio}`, 10, summaryY + 12);
-    doc.text(`Total: $${invoice.total}`, 10, summaryY + 18);
+    const finalY = (doc as any).lastAutoTable.finalY + 10;
 
-    // Pie de página
+    doc.text(`Subtotal: $${invoice.subtotal}`, 10, finalY);
+    doc.text(`Descuento: $${invoice.descuento}`, 10, finalY + 6);
+    doc.text(`Cargo de Envío: $${invoice.cargoEnvio}`, 10, finalY + 12);
+    doc.text(`IVA (12%): $${invoice.iva}`, 10, finalY + 18);
+    doc.text(`Total: $${invoice.total}`, 10, finalY + 24);
+
     const footerY = doc.internal.pageSize.height - 10;
     doc.text('¡Gracias por su compra!', 105, footerY, { align: 'center' });
 
-    // Guardar el documento como un archivo PDF
     doc.save(`Factura-${invoice.numeroFactura}.pdf`);
 
-        // Muestra un toast de confirmación
+    await this.showToast('Factura generada con éxito', 'success');
+  }
+
+  private async showToast(message: string, color: string) {
     const toast = await this.toastController.create({
-      message: 'Invoice generated successfully.',
+      message: message,
       duration: 2000,
-      color: 'success'
+      color: color,
     });
     toast.present();
   }
-
-
 }

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PayAdminPageRoutingModule } from './pay-admin-routing.module';
 
 import { PayAdminPage } from './pay-admin.page';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PayAdminPageRoutingModule
+    PayAdminPageRoutingModule,
+    AgGridModule
   ],
   declarations: [PayAdminPage]
 })

@@ -8,7 +8,6 @@ import { ImagenproductoService } from 'src/app/services/imagenproducto.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Swiper } from 'swiper';
 
-
 @Component({
   selector: 'app-descproduct',
   templateUrl: './descproduct.page.html',
@@ -16,10 +15,11 @@ import { Swiper } from 'swiper';
 })
 export class DescproductPage implements OnInit, AfterViewInit {
   product: Product | undefined;
-  destacProducts: any;
-images: any;
+  destacProducts: Product[] = [];
+  images: any;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private productosService: ProductosService,
     private imagenproductoService: ImagenproductoService,
     private navCtrl: NavController,
@@ -38,9 +38,19 @@ images: any;
 
     const destacProducts = await this.productosService.getDestacProducts().toPromise();
     this.destacProducts = destacProducts;
+
     for (const product of this.destacProducts) {
-      const image = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
-      product.image = `https://gustavo-rodriguez.tech/imagenes_local/${image.ruta_img}`;
+      try {
+        const response = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
+        if (response.status && response.images.length > 0) {
+          product.images = response.images;
+        } else {
+          product.images = ['https://via.placeholder.com/300?text=' + product.descripcion];
+        }
+      } catch (error) {
+        console.error(`Error al obtener imágenes para el producto ${product.uu_id}:`, error);
+        product.images = ['https://via.placeholder.com/300?text=' + product.descripcion];
+      }
     }
   }
 
@@ -55,7 +65,7 @@ images: any;
       scrollbar: {
         el: '.swiper-scrollbar',
       },
-      pagination: {  // Agrega esta opción
+      pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
         clickable: true,
@@ -74,6 +84,4 @@ images: any;
     this.productService.changeProduct(product);
     this.router.navigate(['/cartshop']);
   }
-
-
 }

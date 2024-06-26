@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ImagenproductoService } from 'src/app/services/imagenproducto.service';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 
 @Component({
   selector: 'app-crud-products-admin',
@@ -24,14 +24,14 @@ export class CrudProductsAdminPage implements OnInit {
     fecha_creacion: '',
     producto_destacado: false,
     idestado: 0,
-    imagenes: [] // Asumiendo que este campo almacena las imágenes del producto
+    imagenes: []
   };
   isEditing: boolean = false;
-  uploadedImages: Array<{name: string, url: string, file: File | undefined;}> = [];
-  selectedImage: any = null; // Estado para la imagen seleccionada para previsualización
-productImages: any;
+  uploadedImages: any[] = [];
+  selectedImage: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
 
-  constructor(private modalCtrl: ModalController, private ImgProductoService: ImagenproductoService ) {}
+  constructor(private modalCtrl: ModalController, private imagenesService: ImagenesService) {}
 
   ngOnInit() {
     if (this.product && this.product.uu_id) {
@@ -52,50 +52,58 @@ productImages: any;
     this.modalCtrl.dismiss({ product: this.product, isEditing: this.isEditing, uploadedImages: this.uploadedImages }, 'confirm');
   }
 
-  onFileSelected(event: any) {
-    const files = event.target.files;
-    if (files.length > 0) {
-      const file = files[0];
+  loadProductImages(productId: string) {
+    this.imagenesService.getProductImages(productId).subscribe({
+      next: (response) => {
+        this.uploadedImages = response.images.map((imageUrl: string) => ({
+          url: imageUrl,
+          name: imageUrl.split('/').pop() // Extracting the image name from the URL
+        }));
+      },
+      error: (error) => {
+        console.error('Error al cargar las imágenes del producto:', error);
+      }
+    });
+  }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.selectedImage = e.target.result; // Actualiza la previsualización de la imagen
-        // Agrega la imagen a uploadedImages para mostrarla en la lista
-        this.uploadedImages.push({ name: file.name, url: e.target.result, file: file });
-      };
+      reader.onload = e => this.selectedImage = reader.result;
       reader.readAsDataURL(file);
     }
   }
 
-  removeImage(image: { name: string; url: string; file: File | undefined; }) {
-    this.uploadedImages = this.uploadedImages.filter(img => img !== image);
-  }
-
-  removeSelectedImage() {
-    this.selectedImage = null; // Esto eliminará la previsualización de la imagen seleccionada
-  }
-
-  uploadImage() {
-    // Aquí puedes agregar la lógica para subir la imagen al servidor
-    // Por ahora, solo limpiamos la previsualización
-    this.selectedImage = null;
-  }
-
-  loadProductImages(productId: string) {
-      this.ImgProductoService.getProductImageById(productId).subscribe({
-          next: (responses) => {
-              responses.forEach((response: { ruta_img: string; descripcion: any; }) => {
-                  this.uploadedImages.push({
-                      url:  '/imageneslocal' + response.ruta_img,
-                      name: response.descripcion,
-                      file: undefined // Assuming this remains valid for multiple images
-                  });
-              });
-              console.log('Imágenes del producto cargadas:', responses);
-              console.log('Estado actual de uploadedImages:', this.uploadedImages);
-          },
-          error: (error) => {
-              console.error('Error al obtener las imágenes del producto:', error);
-          }
+  uploadImage(): void {
+    if (this.selectedFile) {
+      const productId = this.product.uu_id;
+      this.imagenesService.uploadImage(this.selectedFile, productId).subscribe({
+        next: (response) => {
+          this.uploadedImages.push({
+            id: response.id,
+            url: response.image, // Assuming the response contains the image URL
+            name: response.name
+          });
+          this.removeSelectedImage();
+        },
+        error: (error) => console.error(error)
       });
+    }
+  }
+
+  removeImage(image: any): void {
+    this.imagenesService.deleteImage(image.id).subscribe({
+      next: () => {
+        this.uploadedImages = this.uploadedImages.filter(img => img.id !== image.id);
+      },
+      error: (error) => console.error(error)
+    });
+  }
+
+  removeSelectedImage(): void {
+    this.selectedImage = null;
+    this.selectedFile = null;
   }
 }

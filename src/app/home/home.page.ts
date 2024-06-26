@@ -11,6 +11,78 @@ import { UserDataService } from '../services/userdata.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit, AfterViewInit {
+  subscriberEmail: any = '';
+
+  featuredProducts: any[] = [
+    {
+      name: 'Nike Air Max',
+      image: 'https://via.placeholder.com/300?text=Nike+Air+Max',
+      description: 'Las Nike Air Max ofrecen una comodidad superior y un estilo icónico.'
+    },
+    {
+      name: 'Adidas Ultraboost',
+      image: 'https://via.placeholder.com/300?text=Adidas+Ultraboost',
+      description: 'Las Adidas Ultraboost proporcionan una amortiguación excepcional y una respuesta rápida.'
+    },
+    {
+      name: 'Puma RS-X',
+      image: 'https://via.placeholder.com/300?text=Puma+RS-X',
+      description: 'Las Puma RS-X combinan un diseño retro con tecnología moderna para un rendimiento máximo.'
+    },
+    {
+      name: 'Reebok Classic',
+      image: 'https://via.placeholder.com/300?text=Reebok+Classic',
+      description: 'Las Reebok Classic son un símbolo de estilo atemporal y comodidad diaria.'
+    }
+  ];
+  specialOffers: any[] = [
+    {
+      name: 'Nike Zoom',
+      image: 'https://via.placeholder.com/300?text=Nike+Zoom',
+      description: 'Descuento del 20% en todas las Nike Zoom durante esta semana.'
+    },
+    {
+      name: 'Adidas NMD',
+      image: 'https://via.placeholder.com/300?text=Adidas+NMD',
+      description: 'Compra las Adidas NMD con un 15% de descuento, solo por tiempo limitado.'
+    },
+    {
+      name: 'Puma Suede',
+      image: 'https://via.placeholder.com/300?text=Puma+Suede',
+      description: 'Aprovecha un 25% de descuento en las clásicas Puma Suede.'
+    },
+    {
+      name: 'Reebok Nano',
+      image: 'https://via.placeholder.com/300?text=Reebok+Nano',
+      description: 'Oferta especial: 30% de descuento en las Reebok Nano.'
+    }
+  ];
+  customerTestimonials: any[] = [
+    {
+      name: 'Juan Pérez',
+      title: 'Excelente calidad',
+      feedback: 'Compré unos zapatos Nike Air Max y la calidad es impresionante. Muy cómodos y estilizados.'
+    },
+    {
+      name: 'María López',
+      title: 'Servicio rápido',
+      feedback: 'El envío fue muy rápido y los zapatos llegaron en perfecto estado. Muy satisfecha con mi compra.'
+    },
+    {
+      name: 'Carlos García',
+      title: 'Gran variedad',
+      feedback: 'Me encanta la variedad de productos que ofrecen. Encontré exactamente lo que buscaba.'
+    },
+    {
+      name: 'Ana Martínez',
+      title: 'Altamente recomendado',
+      feedback: 'Los productos son de alta calidad y el servicio al cliente es excelente. Recomiendo esta tienda a todos.'
+    }
+  ];
+
+  subscribeToNewsletter() {
+  throw new Error('Method not implemented.');
+  }
 
   isLoggedIn: boolean | undefined;
 

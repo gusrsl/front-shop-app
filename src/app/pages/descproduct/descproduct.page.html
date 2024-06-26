@@ -5,7 +5,7 @@
         <ion-card>
           <swiper-container [autoplay]="{ delay: 7000 }">
             <swiper-slide *ngFor="let image of product?.images">
-              <img [src]="image" alt="{{ product?.descripcion }}"  class="my-image">
+              <img [src]="image" alt="{{ product?.descripcion }}" class="my-image">
             </swiper-slide>
           </swiper-container>
         </ion-card>
@@ -19,7 +19,7 @@
             <p><strong>Marca:</strong> {{ product?.marca }}</p>
             <p><strong>Colores:</strong> {{ product?.color_1 }}, {{ product?.color_2 }}</p>
             <p><strong>Precio:</strong> {{ product?.precio | currency }}</p>
-            <ion-button expand="full" color="primary" (click)="goToCartshop(product)" >Añadir al carrito</ion-button>
+            <ion-button expand="full" color="primary" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -43,20 +43,21 @@
     <ion-card-header>
       <ion-card-title>Productos Destacados</ion-card-title>
     </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="4" size-lg="3" *ngFor="let product of destacProducts">
+            <ion-card class="product-card ion-margin-bottom">
+              <img [src]="product.images[0]" [alt]="product.descripcion" class="card-image"/>
+              <ion-card-header class="product-card-header">
+                <ion-card-title class="product-title">{{product.descripcion}}</ion-card-title>
+                <ion-card-subtitle class="product-subtitle">${{product.precio}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-button class="product-button" expand="full" color="primary" (click)="goToProductDetails(product)">VER PRODUCTO</ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
   </ion-card>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let product of destacProducts">
-        <ion-card class="product-card ion-margin-bottom">
-          <img [src]="product?.image" [alt]="product.descripcion" class="card-image"/>
-          <ion-card-header class="product-card-header">
-            <ion-card-title class="product-title">{{product.descripcion}}</ion-card-title>
-            <ion-card-subtitle class="product-subtitle">${{product.precio}}</ion-card-subtitle>
-          </ion-card-header>
-          <ion-button class="product-button" expand="full" color="primary" class="ion-no-margin" (click)="goToProductDetails(product)">VER PRODUCTO</ion-button>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>
