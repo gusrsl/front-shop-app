@@ -2,7 +2,24 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 15px;
+  border: 2px solid #ccc; /* Añade un borde a la imagen */
+}
+
+.bordered-image {
+  border: 2px solid #ccc; /* Ajusta el color y el grosor del borde según sea necesario */
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.rounded-card {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.product-title {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .product-card {
@@ -10,6 +27,7 @@
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: 15px 15px 0 0;
   }
   .product-card-header {
     text-align: center;
@@ -25,4 +43,14 @@
   .product-button {
     margin-top: 1rem;
   }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+.custom-button {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5 em; /* Ajusta el tamaño de la fuente según necesites */
+  --min-height: 70px; /* Ajusta la altura mínima del botón */
+  --border-radius: 28px; /* Asegura que los bordes sean redondeados */
+  margin: auto;
 }

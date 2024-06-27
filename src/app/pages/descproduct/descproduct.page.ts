@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/use-lifecycle-interface */
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -17,6 +16,8 @@ export class DescproductPage implements OnInit, AfterViewInit {
   product: Product | undefined;
   destacProducts: Product[] = [];
   images: any;
+  tallas: number[] = [36, 38, 40, 42, 44];
+  selectedTalla: number | undefined;
 
   constructor(
     private router: Router,
@@ -28,29 +29,27 @@ export class DescproductPage implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
-    if (navigation) {
-      const state = navigation.extras.state as {product: Product};
+    if (navigation && navigation.extras.state) {
+      const state = navigation.extras.state as { product: Product };
       this.product = state.product;
       console.log(this.product);
     } else {
       // Manejar el caso cuando navigation es null
     }
 
-    const destacProducts = await this.productosService.getDestacProducts().toPromise();
-    this.destacProducts = destacProducts;
-
-    for (const product of this.destacProducts) {
-      try {
-        const response = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
-        if (response.status && response.images.length > 0) {
-          product.images = response.images;
-        } else {
-          product.images = ['https://via.placeholder.com/300?text=' + product.descripcion];
+    try {
+      this.destacProducts = await this.productosService.getDestacProducts().toPromise();
+      for (const product of this.destacProducts) {
+        try {
+          const response = await this.imagenproductoService.getProductImageById(product.uu_id).toPromise();
+          product.images = response.status && response.images.length > 0 ? response.images : ['https://placehold.co/400x300/png'];
+        } catch (error) {
+          console.error(`Error al obtener imágenes para el producto ${product.uu_id}:`, error);
+          product.images = ['https://placehold.co/400x300/png'];
         }
-      } catch (error) {
-        console.error(`Error al obtener imágenes para el producto ${product.uu_id}:`, error);
-        product.images = ['https://via.placeholder.com/300?text=' + product.descripcion];
       }
+    } catch (error) {
+      console.error('Error al obtener productos destacados:', error);
     }
   }
 
@@ -71,6 +70,10 @@ export class DescproductPage implements OnInit, AfterViewInit {
         clickable: true,
       },
     });
+  }
+
+  selectTalla(talla: number) {
+    this.selectedTalla = talla;
   }
 
   goToProductDetails(product: any) {

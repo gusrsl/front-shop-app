@@ -2,53 +2,100 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="6">
-        <ion-card>
+        <ion-card class="rounded-card">
           <swiper-container [autoplay]="{ delay: 7000 }">
             <swiper-slide *ngFor="let image of product?.images">
-              <img [src]="image" alt="{{ product?.descripcion }}" class="my-image">
+              <img [src]="image" alt="{{ product?.descripcion }}" class="my-image bordered-image">
             </swiper-slide>
           </swiper-container>
         </ion-card>
       </ion-col>
       <ion-col size="12" size-md="6">
-        <ion-card>
+        <ion-card class="rounded-card">
           <ion-card-header>
-            <ion-card-title>{{ product?.descripcion }}</ion-card-title>
+            <ion-card-title class="product-title">{{ product?.descripcion }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p><strong>Marca:</strong> {{ product?.marca }}</p>
-            <p><strong>Colores:</strong> {{ product?.color_1 }}, {{ product?.color_2 }}</p>
-            <p><strong>Precio:</strong> {{ product?.precio | currency }}</p>
-            <ion-button expand="full" color="primary" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+                    <ion-label><strong>Marca:</strong> {{ product?.marca }}</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="color-palette-outline" slot="start"></ion-icon>
+                    <ion-label><strong>Colores:</strong> {{ product?.color_1 }}, {{ product?.color_2 }}</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="cash-outline" slot="start"></ion-icon>
+                    <ion-label><strong>Precio:</strong> {{ product?.precio | currency }}</ion-label>
+                  </ion-item>
+                  <ion-item class="ion-justify-content-center">
+                    <ion-button expand="block" shape="round" color="primary" class="custom-button" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="rounded-card">
+          <ion-card-header>
+            <ion-card-title class="product-title">Detalles del producto</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-icon name="time-outline" slot="start"></ion-icon>
+                    <ion-label><strong>Días de entrega:</strong> {{ product?.dias_entrega }}</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="layers-outline" slot="start"></ion-icon>
+                    <ion-label><strong>Material:</strong> {{ product?.material }}</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="flag-outline" slot="start"></ion-icon>
+                    <ion-label><strong>País de fabricación:</strong> {{ product?.pais_fabricacion }}</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="rounded-card">
+          <ion-card-header>
+            <ion-card-title class="product-title">Selecciona tu talla</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4" *ngFor="let talla of tallas">
+                  <ion-button expand="block" fill="outline" [color]="selectedTalla === talla ? 'primary' : 'medium'" (click)="selectTalla(talla)">
+                    {{ talla }}
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Detalles del producto</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Días de entrega:</strong> {{ product?.dias_entrega }}</p>
-      <p><strong>Material:</strong> Malla transpirable</p>
-      <p><strong>Tallas disponibles:</strong> 38, 39, 40, 41, 42, 43, 44</p>
-      <p><strong>Resistencia al agua:</strong> Sí</p>
-      <p><strong>Garantía:</strong> 1 año</p>
-      <p><strong>País de fabricación:</strong> China</p>
-    </ion-card-content>
-  </ion-card>
 
-  <ion-card>
+  <ion-card class="rounded-card">
     <ion-card-header>
-      <ion-card-title>Productos Destacados</ion-card-title>
+      <ion-card-title class="product-title">Productos Destacados</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col size="6" size-md="4" size-lg="3" *ngFor="let product of destacProducts">
-            <ion-card class="product-card ion-margin-bottom">
-              <img [src]="product.images[0]" [alt]="product.descripcion" class="card-image"/>
+            <ion-card class="product-card rounded-card ion-margin-bottom">
+              <img [src]="product.images[0]" [alt]="product.descripcion" class="card-image bordered-image"/>
               <ion-card-header class="product-card-header">
                 <ion-card-title class="product-title">{{product.descripcion}}</ion-card-title>
                 <ion-card-subtitle class="product-subtitle">${{product.precio}}</ion-card-subtitle>

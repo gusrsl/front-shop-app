@@ -46,49 +46,54 @@ export class ProductosPage implements OnInit {
   async ngOnInit() {
     const loading = await this.loadingController.create({
       spinner: 'circles',
-      duration: 5000,
       message: 'Por favor espera...',
       cssClass: 'my-custom-class'
     });
     await loading.present();
 
-    const products = await this.productosService.getAllProducts().toPromise();
-    this.products = products;
-    for (const product of this.products) {
-      try {
-        const response = await this.ImagenService.getProductImages(product.uu_id).toPromise();
-        if (response.status && response.images.length > 0) {
-          product.images = response.images;
-        } else {
-          product.images = ['https://via.placeholder.com/300?text=' + product.descripcion];
+    try {
+      const products = await this.productosService.getAllProducts().toPromise();
+      this.products = products;
+      for (const product of this.products) {
+        try {
+          const response = await this.ImagenService.getProductImages(product.uu_id).toPromise();
+          if (response.status && response.images.length > 0) {
+            product.images = response.images;
+          } else {
+            product.images = ['https://placehold.co/400x300/png'];
+          }
+        } catch (error) {
+          console.error(`Error al obtener imágenes para el producto ${product.uu_id}:`, error);
+          product.images = ['https://placehold.co/400x300/png'];
         }
-      } catch (error) {
-        console.error(`Error al obtener imágenes para el producto ${product.uu_id}:`, error);
-        product.images = ['https://via.placeholder.com/300?text=' + product.descripcion];
       }
+      this.filteredProducts = this.products;
+    } catch (error) {
+      console.error('Error al cargar productos:', error);
+    } finally {
+      loading.dismiss();
     }
 
-    this.filteredProducts = this.products;
     await this.loadProducts();
-    loading.dismiss();
   }
 
   // Método para cargar los productos
   async loadProducts() {
     const loading = await this.loadingController.create({
       spinner: 'circles',
-      duration: 5000,
       message: 'Por favor espera...',
       cssClass: 'my-custom-class'
     });
     await loading.present();
 
-    const start = (this.currentPage - 1) * this.pageSize;
-    const end = this.currentPage * this.pageSize;
+    try {
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = this.currentPage * this.pageSize;
 
-    this.filteredProducts = this.products.slice(start, end);
-
-    loading.dismiss();
+      this.filteredProducts = this.products.slice(start, end);
+    } finally {
+      loading.dismiss();
+    }
   }
 
   // Método para ir a la página siguiente
@@ -143,14 +148,13 @@ export class ProductosPage implements OnInit {
     });
   }
 
-      // Obtener marcas únicas
-    getUniqueBrands(): string[] {
-      return [...new Set(this.products.map(product => product.marca))];
-    }
+  // Obtener marcas únicas
+  getUniqueBrands(): string[] {
+    return [...new Set(this.products.map(product => product.marca))];
+  }
 
-    // Obtener colores únicos
-    getUniqueColors(color_1: string): string[] {
-      return [...new Set(this.products.map(product => product.color_1))];
-    }
-
+  // Obtener colores únicos
+  getUniqueColors(color: string): string[] {
+    return [...new Set(this.products.map(product => product.color_1))];
+  }
 }

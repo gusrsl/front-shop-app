@@ -16,6 +16,11 @@ export interface Product {
   fecha_creacion: string;
   producto_destacado: boolean;
   idestado: number;
+  material: string;
+  tallas: string;
   image: string;
+  resistencia_agua: any;
+  garantia: any;
+  pais_fabricacion: any;
   images: string[]; // Cambiado de 'image' a 'images'
 }
