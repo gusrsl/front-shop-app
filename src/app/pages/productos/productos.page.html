@@ -3,70 +3,80 @@
     <ion-row>
       <!-- Columna del filtro -->
       <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+
         <ion-card class="filter-card">
-          <ion-toolbar>
-            <ion-title>Filtros</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="toggleFilter()">
-                <ion-icon slot="icon-only" name="funnel"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-          <ion-toolbar>
-            <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="search()"></ion-searchbar>
-          </ion-toolbar>
           <ion-card-content>
-            <ion-item>
-              <ion-label>Marca</ion-label>
-              <ion-select [(ngModel)]="filter.marca" (ionChange)="filterProducts()">
-                <ion-select-option *ngFor="let marca of getUniqueBrands()" [value]="marca">{{ marca }}</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Color 1</ion-label>
-              <ion-select [(ngModel)]="filter.color_1" (ionChange)="filterProducts()">
-                <ion-select-option *ngFor="let color of getUniqueColors('color_1')" [value]="color">{{ color }}</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Color 2</ion-label>
-              <ion-select [(ngModel)]="filter.color_2" (ionChange)="filterProducts()">
-                <ion-select-option *ngFor="let color of getUniqueColors('color_2')" [value]="color">{{ color }}</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Precio</ion-label>
-              <ion-range min="0" max="500" step="10" dualKnobs="true" [(ngModel)]="filter.precio" (ionChange)="filterProducts()">
-                <ion-icon size="small" slot="start" name="cash-outline"></ion-icon>
-                <ion-icon slot="end" name="cash-outline"></ion-icon>
-              </ion-range>
-              <div class="price-range-text">
-                ${{filter.precio.lower}} - ${{filter.precio.upper}}
-              </div>
-            </ion-item>
-            <ion-item>
-              <ion-label>Días de Entrega</ion-label>
-              <ion-range min="0" max="30" step="1" [(ngModel)]="filter.dias_entrega" (ionChange)="filterProducts()">
-                <ion-icon size="small" slot="start" name="time-outline"></ion-icon>
-                <ion-icon slot="end" name="time-outline"></ion-icon>
-              </ion-range>
-              <div class="price-range-text">
-                {{filter.dias_entrega}} días
-              </div>
-            </ion-item>
-            <ion-item>
-              <ion-label>Disponibilidad</ion-label>
-              <ion-toggle [(ngModel)]="availableOnly" (ionChange)="filterProducts()"></ion-toggle>
-            </ion-item>
+            <!-- Disparador para expandir/colapsar filtros -->
+            <ion-item-divider button (click)="toggleFiltersVisibility()">
+              <ion-label class="bold-large">Filtros</ion-label>
+              <ion-icon slot="end" name="chevron-down" *ngIf="!filtersVisible"></ion-icon>
+              <ion-icon slot="end" name="chevron-up" *ngIf="filtersVisible"></ion-icon>
+            </ion-item-divider>
+            <!-- Grupo de filtros -->
+            <ion-item-group *ngIf="filtersVisible">
+              <ion-item>
+                <ion-label>Marca</ion-label>
+                <ion-select [(ngModel)]="filter.marca" (ionChange)="filterProducts()">
+                  <ion-select-option *ngFor="let marca of getUniqueBrands()" [value]="marca">{{ marca }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Color 1</ion-label>
+                <ion-select [(ngModel)]="filter.color_1" (ionChange)="filterProducts()">
+                  <ion-select-option *ngFor="let color of getUniqueColors('color_1')" [value]="color">{{ color }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Color 2</ion-label>
+                <ion-select [(ngModel)]="filter.color_2" (ionChange)="filterProducts()">
+                  <ion-select-option *ngFor="let color of getUniqueColors('color_2')" [value]="color">{{ color }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Precio</ion-label>
+                <ion-range min="0" max="500" step="10" dualKnobs="true" [(ngModel)]="filter.precio" (ionChange)="filterProducts()">
+                  <ion-icon size="small" slot="start" name="cash-outline"></ion-icon>
+                  <ion-icon slot="end" name="cash-outline"></ion-icon>
+                </ion-range>
+                <div class="price-range-text">
+                  ${{filter.precio.lower}} - ${{filter.precio.upper}}
+                </div>
+              </ion-item>
+              <ion-item>
+                <ion-label>Días de Entrega</ion-label>
+                <ion-range min="0" max="30" step="1" [(ngModel)]="filter.dias_entrega" (ionChange)="filterProducts()">
+                  <ion-icon size="small" slot="start" name="time-outline"></ion-icon>
+                  <ion-icon slot="end" name="time-outline"></ion-icon>
+                </ion-range>
+                <div class="price-range-text">
+                  {{filter.dias_entrega}} días
+                </div>
+              </ion-item>
+              <ion-item>
+                <ion-label>Disponibilidad</ion-label>
+                <ion-toggle [(ngModel)]="availableOnly" (ionChange)="filterProducts()"></ion-toggle>
+              </ion-item>
+            </ion-item-group>
           </ion-card-content>
         </ion-card>
       </ion-col>
 
+
+
       <ion-col size="12" size-sm="6" size-md="8" size-lg="9">
         <ion-card class="header-card">
-          <ion-card-header>
-            <ion-card-title>Todos los Zapatos</ion-card-title>
-          </ion-card-header>
+          <ion-row>
+            <ion-col>
+              <ion-card-header>
+                <ion-card-title>Productos</ion-card-title>
+              </ion-card-header>
+            </ion-col>
+            <ion-col>
+              <ion-toolbar>
+                <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="search()"></ion-searchbar>
+              </ion-toolbar>
+            </ion-col>
+          </ion-row>
         </ion-card>
 
         <ion-grid>

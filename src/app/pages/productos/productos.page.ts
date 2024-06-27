@@ -17,6 +17,9 @@ export class ProductosPage implements OnInit {
   isSearching: boolean | undefined;
   isFiltered: boolean | undefined;
 
+  isFilterVisible = false; // Controla la visibilidad del contenido del ion-card
+
+
   currentPage = 1;
   pageSize = 10;
 
@@ -75,6 +78,12 @@ export class ProductosPage implements OnInit {
     }
 
     await this.loadProducts();
+  }
+
+  filtersVisible = false; // Controla la visibilidad de los filtros
+
+  toggleFiltersVisibility() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   // Método para cargar los productos
@@ -138,8 +147,7 @@ export class ProductosPage implements OnInit {
   }
 
   toggleFilter() {
-    this.menuController.enable(true, 'filter-menu');
-    this.menuController.toggle('filter-menu');
+    this.isFilterVisible = !this.isFilterVisible;
   }
 
   goToProductDetails(product: any) {
