@@ -53,8 +53,7 @@
                 </div>
               </ion-item>
               <ion-item>
-                <ion-label>Disponibilidad</ion-label>
-                <ion-toggle [(ngModel)]="availableOnly" (ionChange)="filterProducts()"></ion-toggle>
+                <ion-button style="margin: auto;" expand="block" color="medium" (click)="resetFilters()">Restablecer Filtros</ion-button>
               </ion-item>
             </ion-item-group>
           </ion-card-content>
@@ -66,15 +65,13 @@
       <ion-col size="12" size-sm="6" size-md="8" size-lg="9">
         <ion-card class="header-card">
           <ion-row>
-            <ion-col>
+            <ion-col size="4" size-sm="3">
               <ion-card-header>
                 <ion-card-title>Productos</ion-card-title>
               </ion-card-header>
             </ion-col>
-            <ion-col>
-              <ion-toolbar>
-                <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="search()"></ion-searchbar>
-              </ion-toolbar>
+            <ion-col size="8" size-sm="9">
+              <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="search()"></ion-searchbar>
             </ion-col>
           </ion-row>
         </ion-card>

@@ -12,10 +12,10 @@
               <ion-card-content>
                 <ion-grid>
                   <ion-row>
-                    <ion-col size="6">
-                        <ion-img class="product-image" [src]="item.product.images[0]"></ion-img>
+                    <ion-col size="4">
+                      <ion-img class="product-image" [src]="item.product.images[0]"></ion-img>
                     </ion-col>
-                    <ion-col size="3" class="product-details">
+                    <ion-col size="5" class="product-details">
                       <ion-label>
                         <h2>{{item.product.descripcion}}</h2>
                         <p>${{item.product.precio}}</p>
@@ -24,9 +24,9 @@
                       <ion-button fill="outline" size="small" class="ion-margin">MOVER ❤️</ion-button>
                     </ion-col>
                     <ion-col size="3" class="quantity-controls">
-                      <ion-button fill="outline" size="small" (click)="item.quantity = item.quantity - 1" [disabled]="item.quantity <= 1">-</ion-button>
+                      <ion-button fill="outline" size="small" (click)="decrementQuantity(item)" [disabled]="item.quantity <= 1">-</ion-button>
                       <ion-input type="number" [(ngModel)]="item.quantity" min="1" class="quantity-input"></ion-input>
-                      <ion-button fill="outline" size="small" (click)="item.quantity = item.quantity + 1">+</ion-button>
+                      <ion-button fill="outline" size="small" (click)="incrementQuantity(item)">+</ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -35,13 +35,11 @@
           </ion-item>
         </ion-list>
       </ion-col>
-      <!-- Rest of your code -->
       <ion-col size="12" size-md="4">
         <ion-card class="animated-card">
           <ion-card-header>
             <ion-card-title>DETALLES DEL PRECIO</ion-card-title>
           </ion-card-header>
-
           <ion-card-content>
             <ion-item>
               <ion-label>

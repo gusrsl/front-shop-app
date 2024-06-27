@@ -19,27 +19,28 @@ interface CartItem {
 export class CartshopPage implements OnInit, OnDestroy {
   product: Product | undefined;
   private storage: Storage | null = null;
-  cart: CartItem[] = []; // Add this line
+  cart: CartItem[] = [];
 
+  discount = 0; 
+  shippingCharge = 0;
 
-  constructor(private router: Router, private storageIonic: Storage, private platform: Platform,private productService: ProductService,
+  constructor(
+    private router: Router, 
+    private storageIonic: Storage, 
+    private platform: Platform,
+    private productService: ProductService,
     private cartService: CartService
-  ) {
-  }
+  ) {}
 
   ngOnDestroy() {
     console.log('YourComponent destroyed');
-    // Aquí puedes realizar cualquier limpieza necesaria
-
     const navigation = this.router.getCurrentNavigation();
     if (navigation) {
       navigation.extras.state = undefined;
     }
   }
 
-
   async ngOnInit() {
-    // Inicializa el carrito desde el almacenamiento local
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       this.cart = JSON.parse(storedCart);
@@ -51,7 +52,6 @@ export class CartshopPage implements OnInit, OnDestroy {
   async addProductToCart() {
     this.productService.currentProduct.subscribe(product => this.product = product ?? undefined);
 
-    // Valida si existe un producto
     if (!this.product) {
       console.log('No product to add to cart');
       return;
@@ -59,19 +59,16 @@ export class CartshopPage implements OnInit, OnDestroy {
 
     console.log('Product:', this.product);
 
-    // Verifica si el producto ya está en el carrito
     const existingItem = this.cart.find(item => item.product.uu_id === this.product?.uu_id);
     if (existingItem) {
       console.log('Product is already in the cart');
       return;
     }
 
-    // Agrega el producto al carrito
-    let cartItem: CartItem = { product: this.product!, quantity: 1 }; // Add the null assertion operator (!) after this.product
+    let cartItem: CartItem = { product: this.product!, quantity: 1 }; 
     this.cart.push(cartItem);
     console.log('Cart after adding product:', this.cart);
 
-    // Guarda el carrito en el almacenamiento local
     localStorage.setItem('cart', JSON.stringify(this.cart));
     console.log('Cart saved to local storage');
   }
@@ -83,14 +80,25 @@ export class CartshopPage implements OnInit, OnDestroy {
     }
     console.log('Cart after removing product:', this.cart);
 
-    // Guarda el carrito en el almacenamiento local
     localStorage.setItem('cart', JSON.stringify(this.cart));
     console.log('Cart saved to local storage');
   }
 
+  incrementQuantity(item: CartItem) {
+    item.quantity++;
+    this.updateLocalStorage();
+  }
 
-  discount = 0; // Asume que esto es tu descuento
-  shippingCharge = 0;
+  decrementQuantity(item: CartItem) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.updateLocalStorage();
+    }
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
 
   get subtotal() {
     return this.cart.reduce((total, item) => total + (item.product.precio * item.quantity), 0);

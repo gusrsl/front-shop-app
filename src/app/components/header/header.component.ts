@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private userDataService: UserDataService) { }
 
   async ngOnInit() {
+    this.updateCartCount();
 
     setInterval(() => {
       try {
@@ -56,4 +57,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
       clearInterval(this.intervalId);
     }
   }
+
+  cartItemCount: number = 0;
+
+  updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart') ?? '');
+    if (cart && Array.isArray(cart)) {
+      // Asumiendo que el carrito es un array de productos, calcula la suma de las cantidades
+      this.cartItemCount = cart.reduce((acc, current) => acc + current.quantity, 0);
+    } else {
+      // Si no hay carrito o no es un array, establece la cantidad en 0
+      this.cartItemCount = 0;
+    }
+  }
+
+
 }

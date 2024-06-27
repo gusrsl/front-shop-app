@@ -111,6 +111,20 @@ export class ProductosPage implements OnInit {
     this.filterProducts();
   }
 
+  resetFilters() {
+    // Restablece los valores de tus filtros aquí
+    this.filter = {
+      marca: '',
+      color_1: '',
+      color_2: '',
+      precio: { lower: 0, upper: 500 }, // Asumiendo que este es el rango inicial
+      dias_entrega: null,
+      // Añade aquí el resto de los filtros que necesites restablecer
+    };
+    this.availableOnly = false; // Asumiendo que este es el valor inicial para la disponibilidad
+    this.filterProducts(); // Llama a la función que aplica los filtros
+  }
+
   // Método para ir a la página anterior
   previousPage() {
     if (this.currentPage > 1) {

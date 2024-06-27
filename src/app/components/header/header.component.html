@@ -25,9 +25,10 @@
     </div>
 
       <!-- Botón del carrito de compras -->
-      <ion-buttons slot="end" style="margin-right: 10px;">
+      <ion-buttons slot="end" style="margin-right: 10px; position: relative;">
         <ion-button mode="md" routerLink="/cartshop" (click)="navigateToCartShop()">
           <ion-icon slot="icon-only" name="cart"></ion-icon>
+          <ion-badge color="danger" *ngIf="cartItemCount > 0" class="cart-badge">{{ cartItemCount }}</ion-badge>
         </ion-button>
       </ion-buttons>
     </div>
