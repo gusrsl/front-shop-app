@@ -3,5 +3,24 @@
   <app-header></app-header>
   <ion-content>
     <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="share-social"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button color="facebook" href="https://facebook.com" target="_blank">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="whatsapp" href="https://wa.me/1234567890" target="_blank">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="instagram" href="https://instagram.com" target="_blank">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="twitter" href="https://twitter.com" target="_blank">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
   </ion-content>
 </ion-app>

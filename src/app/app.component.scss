@@ -5,3 +5,29 @@ ion-searchbar {
   --border-radius: 15px;
 
 }
+
+/* Add custom styles for the fab buttons if needed */
+ion-fab-button {
+  --border-radius: 50%;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+ion-fab-button[color="facebook"] {
+  --background: #3b5998;
+  --color: #fff;
+}
+
+ion-fab-button[color="whatsapp"] {
+  --background: #25d366;
+  --color: #fff;
+}
+
+ion-fab-button[color="instagram"] {
+  --background: #e4405f;
+  --color: #fff;
+}
+
+ion-fab-button[color="twitter"] {
+  --background: #1da1f2;
+  --color: #fff;
+}
