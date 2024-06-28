@@ -82,6 +82,18 @@ export class DescproductPage implements OnInit, AfterViewInit {
     });
   }
 
+  downloadImage() {
+    // Ruta de la imagen en la carpeta assets
+    const imageUrl = 'assets/image/plantilladarmacioshop.png';
+    // Crear un elemento <a> temporal
+    const a = document.createElement('a');
+    a.href = imageUrl;
+    a.download = 'plantilladarmacioshop.png'; // Nombre sugerido para el archivo descargado
+    document.body.appendChild(a); // Añadir el elemento <a> al documento
+    a.click(); // Iniciar la descarga
+    document.body.removeChild(a); // Eliminar el elemento <a> del documento
+  }
+
   goToCartshop(product: any) {
     console.log('Product:', product);
     this.productService.changeProduct(product);

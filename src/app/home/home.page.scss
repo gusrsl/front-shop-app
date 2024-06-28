@@ -31,6 +31,12 @@
   margin: 20px 0;
 }
 
+.brand-card ion-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .release-card, .featured-card, .offers-card, .testimonials-card, .newsletter-card {
   margin: 10px;
   border-radius: 15px;
@@ -65,4 +71,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.brand-logo {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.brand-description {
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  margin-top: auto;
 }

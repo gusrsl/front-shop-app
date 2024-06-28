@@ -9,6 +9,18 @@
             </swiper-slide>
           </swiper-container>
         </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Plantilla de Medición de Talla de Pie</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Esta plantilla es una herramienta útil para medir la talla de tu pie en casa. Por favor, asegúrate de imprimirla en una hoja de tamaño A4 sin ajustar la escala de impresión, para mantener las dimensiones correctas. Sigue las instrucciones detalladas en la plantilla para obtener una medición precisa.
+          </ion-card-content>
+        </ion-card>
+
+        <ion-item class="ion-justify-content-center">
+          <ion-button expand="block" shape="round" color="primary" class="custom-button" (click)="downloadImage()">Descargar Plantilla</ion-button>
+        </ion-item>
       </ion-col>
       <ion-col size="12" size-md="6">
         <ion-card class="rounded-card">
@@ -32,7 +44,9 @@
                     <ion-label><strong>Precio:</strong> {{ product?.precio | currency }}</ion-label>
                   </ion-item>
                   <ion-item class="ion-justify-content-center">
-                    <ion-button expand="block" shape="round" color="primary" class="custom-button" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
+                    <ion-button expand="block" shape="round" color="primary" class="custom-button" [disabled]="!selectedTalla" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
+                    <!-- Message to select size if not selected -->
+                    <p *ngIf="!selectedTalla" style="color: red; text-align: center;">Por favor, selecciona una talla antes de añadir al carrito.</p>
                   </ion-item>
                 </ion-col>
               </ion-row>
