@@ -70,9 +70,13 @@
             <ion-icon name="pricetags" slot="start"></ion-icon>
             Gestion de Productos
           </ion-item>
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/pedidosrep')">
+            <ion-icon name="pricetags" slot="start"></ion-icon>
+            Pedidos
+          </ion-item>
         </div>
 
-        <div *ngIf="!userData || (userData && userData.type !== 'admin')">
+        <div *ngIf="!userData">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/login')">
             <ion-icon name="log-in" slot="start"></ion-icon>
             Iniciar sesion

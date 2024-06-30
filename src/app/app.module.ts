@@ -21,6 +21,8 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { AgGridModule } from 'ag-grid-angular';
+import { PedidosrepPage } from './admin/pedidosrep/pedidosrep.page';
+import { PedidosrepPageModule } from './admin/pedidosrep/pedidosrep.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { AgGridModule } from 'ag-grid-angular';
     CardModule,
     ButtonModule,
     CarouselModule,
+    PedidosrepPageModule,
     AgGridModule // Añade AgGridModule aquí
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

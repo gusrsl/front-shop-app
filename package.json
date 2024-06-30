@@ -34,6 +34,7 @@
     "ag-grid-angular": "^31.3.2",
     "ag-grid-community": "^31.3.2",
     "chart.js": "^4.4.3",
+    "html2canvas": "^1.4.1",
     "ionicons": "^7.0.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
@@ -42,6 +43,7 @@
     "rxjs": "~7.8.0",
     "swiper": "^11.1.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {

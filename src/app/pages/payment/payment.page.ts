@@ -6,6 +6,9 @@ import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';  // Import the autoTable plugin
 import { ToastController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
+import { EmailService } from 'src/app/services/email.service'; // Importa el servicio de correo
+import { firstValueFrom } from 'rxjs';
+import { PedidoService } from 'src/app/services/pedidos.service';
 
 interface CartData {
   cart: any[];
@@ -29,11 +32,16 @@ export class PaymentPage implements OnInit {
   iva: number = 0;
   stripe: any;
   cardElement: any;
+  paymmentintent: any;
+  emailsSent: boolean = false; // Flag para controlar el envío de correos
 
   constructor(
     private cartService: CartService,
     private http: HttpClient,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private emailService: EmailService, // Inyecta el servicio de correo,
+    private pedidoService: PedidoService // Inyecta el servicio de pedidos
+
   ) {}
 
   async ngOnInit() {
@@ -82,11 +90,48 @@ export class PaymentPage implements OnInit {
         this.showToast('Error confirmando el pago', 'danger');
       } else if (paymentIntent.status === 'succeeded') {
         console.log('Payment succeeded with payment intent:', paymentIntent);
+        this.paymmentintent = paymentIntent;
         this.showToast('Pago realizado con éxito', 'success');
         await this.generateInvoice(paymentIntent);
+        await this.createPedido(); // Crear el pedido una vez que el pago se ha completado
+        await this.sendOrderEmails(); // Enviar correos una vez que el pago se ha completado
       }
     }
   }
+
+  async createPedido() {
+    console.log('Creando pedido...')
+    // Paso 1: Recuperar los datos del Local Storage
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const cart = JSON.parse(localStorage.getItem('cart') || 'null');
+    const stripeResponseRaw = localStorage.getItem('stripeResponse');
+    let stripeResponse: any = this.paymmentintent;
+
+    // Paso 2: Preparar los detalles del pedido
+    const pedido = {
+      user_id: usuario.id, // Reemplaza con el ID real del usuario
+      estado: 'pendiente',
+      subtotal: this.subtotal,
+      total: this.total,
+      idestado: true,
+      producto_ids: cart.flatMap((item: { product: { uu_id: any; }; quantity: number }) =>
+        Array.from({ length: item.quantity }, () => item.product.uu_id))
+    };
+    console.log('Detalles del pedido:', pedido);
+
+    // Paso 3: Enviar la petición para crear el pedido
+    try {
+      console.log('Usuario:', usuario);
+      console.log('Carrito:', cart);
+      console.log('Respuesta de Stripe:', stripeResponse);
+
+      const response = await firstValueFrom(this.pedidoService.createPedido(pedido));
+      console.log('Pedido creado con éxito:', response);
+    } catch (error) {
+      console.error('Error al crear pedido:', error);
+    }
+  }
+
 
   async generateInvoice(paymentIntent: any): Promise<void> {
     await this.showToast('Generando factura...', 'primary');
@@ -160,6 +205,42 @@ export class PaymentPage implements OnInit {
     doc.save(`Factura-${invoice.numeroFactura}.pdf`);
 
     await this.showToast('Factura generada con éxito', 'success');
+  }
+
+  async sendOrderEmails() {
+    if (this.emailsSent) {
+      console.log('Los correos ya han sido enviados.');
+      return;
+    }
+
+    console.log('Enviando correos...')
+    // Paso 1: Recuperar los datos del Local Storage
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const cart = JSON.parse(localStorage.getItem('cart') || 'null');
+    const stripeResponseRaw = localStorage.getItem('stripeResponse');
+    let stripeResponse: any = this.paymmentintent;
+
+    // Paso 2: Preparar los detalles del pedido
+    const customerEmail = usuario.correo;
+    const orderDetails = {
+      orderId: stripeResponse.id,
+      product: cart?.product?.descripcion,
+      quantity: cart?.quantity,
+      price: stripeResponse.amount / 100,
+      customerName: `${usuario.nombre} ${usuario.apellido}`,
+      address: `${usuario.direccion}, ${usuario.ciudad}, ${usuario.pais}`
+    };
+    console.log('Detalles del pedido:', orderDetails);
+    console.log('Correo del cliente:', customerEmail);
+
+    // Paso 3: Enviar el correo electrónico
+    try {
+      const response = await firstValueFrom(this.emailService.sendOrderEmails(customerEmail, orderDetails));
+      console.log('Correos enviados con éxito:', response);
+      this.emailsSent = true; // Marca los correos como enviados
+    } catch (error) {
+      console.error('Error al enviar correos:', error);
+    }
   }
 
   private async showToast(message: string, color: string) {

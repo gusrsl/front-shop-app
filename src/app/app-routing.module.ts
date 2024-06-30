@@ -53,6 +53,14 @@ const routes: Routes = [
   {
     path: 'crud-products-admin',
     loadChildren: () => import('./admin/crud-products-admin/crud-products-admin.module').then( m => m.CrudProductsAdminPageModule)
+  },
+  {
+    path: 'pedidos',
+    loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'pedidosrep',
+    loadChildren: () => import('./admin/pedidosrep/pedidosrep.module').then( m => m.PedidosrepPageModule)
   }
 
 

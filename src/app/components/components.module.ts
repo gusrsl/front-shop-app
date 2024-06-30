@@ -9,13 +9,15 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { ButtonEditRendererComponent } from './render/button-edit.component';
+import { ButtonStateRendererComponent } from './render/button-state.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     HeaderComponent,
     FooterComponent,
-    ButtonEditRendererComponent
+    ButtonEditRendererComponent,
+    ButtonStateRendererComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ButtonEditRendererComponent } from './render/button-edit.component';
     MenuComponent,
     HeaderComponent,
     FooterComponent,
-    ButtonEditRendererComponent
+    ButtonEditRendererComponent,
+    ButtonStateRendererComponent
   ]
 })
 export class ComponentsModule { }
