@@ -57,19 +57,7 @@ export class ProductosPage implements OnInit {
     try {
       const products = await this.productosService.getAllProducts().toPromise();
       this.products = products;
-      for (const product of this.products) {
-        try {
-          const response = await this.ImagenService.getProductImages(product.uu_id).toPromise();
-          if (response.status && response.images.length > 0) {
-            product.images = response.images;
-          } else {
-            product.images = ['https://placehold.co/400x300/png'];
-          }
-        } catch (error) {
-          console.error(`Error al obtener imágenes para el producto ${product.uu_id}:`, error);
-          product.images = ['https://placehold.co/400x300/png'];
-        }
-      }
+
       this.filteredProducts = this.products;
     } catch (error) {
       console.error('Error al cargar productos:', error);
