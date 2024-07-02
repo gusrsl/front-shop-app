@@ -86,3 +86,48 @@
     transform: scaleX(1);
   }
 }
+
+
+ion-card-header {
+  background-color: #f4f4f4; /* Color de fondo */
+  padding: 15px; /* Espaciado interno */
+  border-bottom: 1px solid #e0e0e0; /* Borde inferior */
+}
+
+ion-card-title {
+  color: #333; /* Color del texto */
+  font-size: 18px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita */
+}
+
+.animated-button {
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  font-weight: bold; /* Negrita */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+ion-card-header {
+  background-color: #f4f4f4; /* Color de fondo */
+  padding: 15px; /* Espaciado interno */
+  border-bottom: 1px solid #e0e0e0; /* Borde inferior */
+}
+
+ion-card-title {
+  color: #333; /* Color del texto */
+  font-size: 18px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita */
+}
+
+.animated-button {
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  font-weight: bold; /* Negrita */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+.animated-button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}

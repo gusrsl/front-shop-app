@@ -21,12 +21,12 @@ export class CartshopPage implements OnInit, OnDestroy {
   private storage: Storage | null = null;
   cart: CartItem[] = [];
 
-  discount = 0; 
+  discount = 0;
   shippingCharge = 0;
 
   constructor(
-    private router: Router, 
-    private storageIonic: Storage, 
+    private router: Router,
+    private storageIonic: Storage,
     private platform: Platform,
     private productService: ProductService,
     private cartService: CartService
@@ -65,13 +65,20 @@ export class CartshopPage implements OnInit, OnDestroy {
       return;
     }
 
-    let cartItem: CartItem = { product: this.product!, quantity: 1 }; 
+    let cartItem: CartItem = { product: this.product!, quantity: 1 };
     this.cart.push(cartItem);
     console.log('Cart after adding product:', this.cart);
 
     localStorage.setItem('cart', JSON.stringify(this.cart));
     console.log('Cart saved to local storage');
   }
+
+  clearCart() {
+    this.cart = []; // Vacía el arreglo del carrito
+    localStorage.removeItem('cart'); // Remueve el carrito de local storage
+    console.log('Carrito vaciado');
+  }
+
 
   async removeFromCart(product: Product) {
     let index = this.cart.findIndex(item => item.product.uu_id === product.uu_id);
