@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 import { EmailService } from 'src/app/services/email.service'; // Importa el servicio de correo
 import { firstValueFrom } from 'rxjs';
 import { PedidoService } from 'src/app/services/pedidos.service';
+import { Router } from '@angular/router';
 
 interface CartData {
   cart: any[];
@@ -39,6 +40,7 @@ export class PaymentPage implements OnInit {
     private cartService: CartService,
     private http: HttpClient,
     private toastController: ToastController,
+    private router: Router,
     private emailService: EmailService, // Inyecta el servicio de correo,
     private pedidoService: PedidoService // Inyecta el servicio de pedidos
 
@@ -95,8 +97,17 @@ export class PaymentPage implements OnInit {
         await this.generateInvoice(paymentIntent);
         await this.createPedido(); // Crear el pedido una vez que el pago se ha completado
         await this.sendOrderEmails(); // Enviar correos una vez que el pago se ha completado
+        await this.clearCart(); // Limpiar el carrito una vez que el pago se ha completado
+        await this.router.navigate(['/pedidos-user']); // Navega a la pantalla de pedidos
+
       }
     }
+  }
+
+  clearCart() {
+    this.cart = []; // Vacía el arreglo del carrito
+    localStorage.removeItem('cart'); // Remueve el carrito de local storage
+    console.log('Carrito vaciado');
   }
 
   async createPedido() {

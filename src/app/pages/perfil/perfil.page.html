@@ -7,61 +7,29 @@
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="12">
-            <ion-item lines="none">
-              <ion-avatar slot="start">
-                <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
-              </ion-avatar>
-              <ion-label>Foto de Perfil</ion-label>
-            </ion-item>
+          <ion-col size="12" class="ion-text-center">
+            <ion-avatar style="margin: 20px auto; display: block; width: 100px; height: 100px;">
+              <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" style="width: 100%; height: auto;">
+            </ion-avatar>
+            <h2>{{usuario.nombreusuario}}</h2>
+            <p>{{usuario.correo}}</p>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col size="6">
             <ion-item>
+              <ion-icon name="person-outline" slot="start"></ion-icon>
               <ion-label position="stacked">Nombre</ion-label>
-              <ion-input placeholder="Tu nombre" readonly></ion-input>
+              <ion-input [(ngModel)]="usuario.nombre" placeholder="Tu nombre" readonly></ion-input>
             </ion-item>
           </ion-col>
 
           <ion-col size="6">
             <ion-item>
+              <ion-icon name="person-outline" slot="start"></ion-icon>
               <ion-label position="stacked">Apellido</ion-label>
-              <ion-input placeholder="Tu apellido" readonly></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Correo Electrónico</ion-label>
-              <ion-input type="email" placeholder="Tu correo electrónico" readonly></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Contraseña</ion-label>
-              <ion-input type="password" placeholder="Tu contraseña" readonly></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-
-        <!-- Nuevos campos -->
-        <ion-row>
-          <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Número de Teléfono</ion-label>
-              <ion-input type="tel" placeholder="Tu número de teléfono" readonly></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-              <ion-input type="tel" placeholder="Tu fecha de nacimiento" readonly></ion-input>
+              <ion-input [(ngModel)]="usuario.apellido" placeholder="Tu apellido" readonly></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -69,8 +37,29 @@
         <ion-row>
           <ion-col size="12">
             <ion-item>
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              <ion-label position="stacked">Correo Electrónico</ion-label>
+              <ion-input type="email" [(ngModel)]="usuario.correo" placeholder="Tu correo electrónico" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-icon name="call-outline" slot="start"></ion-icon>
+              <ion-label position="stacked">Número de Teléfono</ion-label>
+              <ion-input type="tel" [(ngModel)]="usuario.telefono" placeholder="Tu número de teléfono" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-icon name="location-outline" slot="start"></ion-icon>
               <ion-label position="stacked">Dirección</ion-label>
-              <ion-textarea placeholder="Tu dirección" readonly></ion-textarea>
+              <ion-textarea [(ngModel)]="usuario.direccion" placeholder="Tu dirección" readonly></ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -78,15 +67,17 @@
         <ion-row>
           <ion-col size="6">
             <ion-item>
+              <ion-icon name="business-outline" slot="start"></ion-icon>
               <ion-label position="stacked">Ciudad</ion-label>
-              <ion-input placeholder="Tu ciudad" readonly></ion-input>
+              <ion-input [(ngModel)]="usuario.ciudad" placeholder="Tu ciudad" readonly></ion-input>
             </ion-item>
           </ion-col>
 
           <ion-col size="6">
             <ion-item>
+              <ion-icon name="globe-outline" slot="start"></ion-icon>
               <ion-label position="stacked">País</ion-label>
-              <ion-input placeholder="Tu país" readonly></ion-input>
+              <ion-input [(ngModel)]="usuario.pais" placeholder="Tu país" readonly></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -94,5 +85,5 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" color="primary">Editar Perfil</ion-button>
+  <ion-button expand="block" color="primary" class="ion-margin-top" (click)="editarPerfil()">Editar Perfil</ion-button>
 </ion-content>

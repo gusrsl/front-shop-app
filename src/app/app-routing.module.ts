@@ -61,6 +61,10 @@ const routes: Routes = [
   {
     path: 'pedidosrep',
     loadChildren: () => import('./admin/pedidosrep/pedidosrep.module').then( m => m.PedidosrepPageModule)
+  },
+  {
+    path: 'pedidos-user',
+    loadChildren: () => import('./pages/pedidos-user/pedidos-user.module').then( m => m.PedidosUserPageModule)
   }
 
 

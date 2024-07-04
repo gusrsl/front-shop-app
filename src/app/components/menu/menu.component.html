@@ -72,7 +72,7 @@
           </ion-item>
           <ion-item class="menu-item slide-in" (click)="navigateTo('/pedidosrep')">
             <ion-icon name="pricetags" slot="start"></ion-icon>
-            Pedidos
+            Gestion de Pedidos
           </ion-item>
         </div>
 
@@ -80,6 +80,13 @@
           <ion-item class="menu-item slide-in" (click)="navigateTo('/login')">
             <ion-icon name="log-in" slot="start"></ion-icon>
             Iniciar sesion
+          </ion-item>
+        </div>
+
+        <div *ngIf="userData && userData.type === 'user'">
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/pedidos-user')">
+            <ion-icon name="log-in" slot="start"></ion-icon>
+            Pedidos
           </ion-item>
         </div>
       </ion-menu-toggle>

@@ -22,6 +22,7 @@
           <ion-button expand="block" shape="round" color="primary" class="custom-button" (click)="downloadImage()">Descargar Plantilla</ion-button>
         </ion-item>
       </ion-col>
+
       <ion-col size="12" size-md="6">
         <ion-card class="rounded-card">
           <ion-card-header>
@@ -43,11 +44,23 @@
                     <ion-icon name="cash-outline" slot="start"></ion-icon>
                     <ion-label><strong>Precio:</strong> {{ product?.precio | currency }}</ion-label>
                   </ion-item>
-                  <ion-item class="ion-justify-content-center">
-                    <ion-button expand="block" shape="round" color="primary" class="custom-button" [disabled]="!selectedTalla" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
-                    <!-- Message to select size if not selected -->
-                    <p *ngIf="!selectedTalla" style="color: red; text-align: center;">Por favor, selecciona una talla antes de añadir al carrito.</p>
-                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="rounded-card">
+          <ion-card-header>
+            <ion-card-title class="product-title">Selecciona tu talla</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4" *ngFor="let talla of tallas">
+                  <ion-button expand="block" fill="outline" [color]="selectedTalla === talla ? 'primary' : 'medium'" (click)="selectTalla(talla)">
+                    {{ talla }}
+                  </ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -74,28 +87,18 @@
                     <ion-icon name="flag-outline" slot="start"></ion-icon>
                     <ion-label><strong>País de fabricación:</strong> {{ product?.pais_fabricacion }}</ion-label>
                   </ion-item>
+                  <ion-item class="ion-justify-content-center">
+                    <ion-button expand="block" shape="round" color="primary" class="custom-button" [disabled]="!selectedTalla" (click)="goToCartshop(product)">Añadir al carrito</ion-button>
+                    <!-- Message to select size if not selected -->
+                    <p *ngIf="!selectedTalla" style="color: red; text-align: center;">Por favor, selecciona una talla antes de añadir al carrito.</p>
+                  </ion-item>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>
         </ion-card>
 
-        <ion-card class="rounded-card">
-          <ion-card-header>
-            <ion-card-title class="product-title">Selecciona tu talla</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="4" *ngFor="let talla of tallas">
-                  <ion-button expand="block" fill="outline" [color]="selectedTalla === talla ? 'primary' : 'medium'" (click)="selectTalla(talla)">
-                    {{ talla }}
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
+
       </ion-col>
     </ion-row>
   </ion-grid>

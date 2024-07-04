@@ -1,0 +1,25 @@
+<ion-content>
+  <div *ngIf="pedidos.length > 0; else noPedidos">
+    <ion-card *ngFor="let pedido of pedidos let i = index" class="pedido-card">
+      <ion-card-header [ngClass]="{'estado-entregado': pedido.estado === 'entregado'}">
+        <ion-card-title>Pedido #{{ i + 1 }}</ion-card-title>
+        <ion-card-subtitle>Estado: {{ pedido.estado }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Fecha: {{ pedido.fecha_pedido | date }}</p>
+        <p>Subtotal: {{ pedido.subtotal | currency }}</p>
+        <p>Total: {{ pedido.total | currency }}</p>
+        <p>Nombre del usuario: {{ pedido.nombre }} {{ pedido.apellido }}</p>
+        <p>Correo: {{ pedido.correo }}</p>
+        <p>Dirección: {{ pedido.direccion }}, {{ pedido.ciudad }}, {{ pedido.pais }}</p>
+        <p>Teléfono: {{ pedido.telefono }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #noPedidos>
+    <ion-item>
+      <ion-label>No tienes pedidos.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

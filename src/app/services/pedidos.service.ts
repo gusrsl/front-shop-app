@@ -19,7 +19,7 @@ export class PedidoService {
   }
 
   // Obtener un pedido por su ID
-  getPedidoById(id: string): Observable<any> {
+  getPedidoById(id: any): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
@@ -42,5 +42,10 @@ export class PedidoService {
   // Obtener todos los pedidos
   getPedidosReport(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrlreport);
+  }
+
+  // Método para cambiar el estado de un pedido
+  togglePedidoEstado(id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}/toggle-estado`, {});
   }
 }

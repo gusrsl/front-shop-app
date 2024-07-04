@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import { PedidoService } from 'src/app/services/pedidos.service';
 import { ColDef, ColGroupDef, RowGroupingDisplayType } from 'ag-grid-community';
 import { ButtonStateRendererComponent } from 'src/app/components/render/button-state.component';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedidosrep',
@@ -71,7 +72,7 @@ export class PedidosrepPage implements OnInit {
   listaRegistro: any;
   frameworkComponents: { buttonRenderer: typeof ButtonStateRendererComponent; };
 
-  constructor(private pedidoService: PedidoService) {
+  constructor(private pedidoService: PedidoService, private loadingController: LoadingController) {
     this.rowClassRules = {
       'sick-days-warning': function (params: any) {
         return params.data.cantpendiente > 0;
@@ -115,7 +116,25 @@ export class PedidosrepPage implements OnInit {
     XLSX.writeFile(wb, 'ReporteDePedidos.xlsx');
   }
 
-  ChangeState() {
-    console.log('cambio de estado del pedido')
+  async ChangeState(data: any) {
+    const loading = await this.loadingController.create({
+      message: 'Cambiando estado del pedido...',
+    });
+    await loading.present();
+
+    this.pedidoService.togglePedidoEstado(data.rowData.id).subscribe({
+      next: async (response) => {
+        await loading.dismiss();
+        console.log('Estado del pedido cambiado con éxito', response);
+        this.pedidoService.getPedidosReport().subscribe(data => {
+          this.rowData = data;
+          this.listaRegistro = data;
+        });
+      },
+      error: async (error) => {
+        await loading.dismiss();
+        console.error('Error al cambiar el estado del pedido', error);
+      }
+    });
   }
 }
