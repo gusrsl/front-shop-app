@@ -1,9 +1,9 @@
-/* eslint-disable @angular-eslint/use-lifecycle-interface */
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Chart, LinearScale, LineController, PointElement, LineElement, CategoryScale, BarController, BarElement } from 'chart.js';
+import { AfterViewInit, Component } from '@angular/core';
+import { Chart, LinearScale, LineController, PointElement, LineElement, CategoryScale, BarController, BarElement, TimeScale } from 'chart.js';
+import { CartService } from 'src/app/services/paymentdata.service';
+import 'chartjs-adapter-date-fns';
 
-Chart.register(LinearScale);
+Chart.register(LinearScale, TimeScale, LineController, PointElement, LineElement, CategoryScale, BarController, BarElement);
 
 @Component({
   selector: 'app-dashboard',
@@ -90,19 +90,55 @@ export class DashboardPage implements AfterViewInit {
     },
   ];
 
-  constructor() { }
+  paymentIntents: any[] = [];
+  charges: any[] = [];
 
-  ngAfterViewInit() {
-    Chart.register(LinearScale, LineController, PointElement, LineElement, CategoryScale, BarController, BarElement);
+  constructor(private cartService: CartService) { }
 
-    // Crea el gráfico de ventas
-    let salesChart = new Chart('salesChart', {
+  async ngAfterViewInit() {
+    await this.loadPaymentIntents();
+    await this.loadCharges();
+  }
+
+  async loadPaymentIntents() {
+     await this.cartService.getAllPaymentIntents().subscribe(data => {
+      console.log(data)
+      this.paymentIntents = [(data as any).data];
+      console.log(this.paymentIntents);
+      this.createSalesChart();
+    });
+  }
+
+  async loadCharges() {
+    await this.cartService.getAllCharges().subscribe(data => {
+      console.log(data)
+      this.charges = [(data as any).data];
+      console.log(this.charges);
+      this.createUserStatsChart();
+    });
+  }
+
+
+
+  createSalesChart() {
+    if (this.paymentIntents.length === 0) {
+      console.error('No payment intents data available.');
+      return;
+    }
+
+    const salesData = this.paymentIntents[0].map((intent: { created: number; amount: number; }) => ({
+      x: new Date(intent.created * 1000),
+      y: intent.amount / 100 // Convertir a dólares si es necesario
+    }));
+
+    console.log('Sales data:', salesData)
+
+    new Chart('salesChart', {
       type: 'line',
       data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
         datasets: [{
           label: 'Ventas',
-          data: [10, 20, 30, 40, 50],
+          data: salesData,
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1
@@ -110,28 +146,12 @@ export class DashboardPage implements AfterViewInit {
       },
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-
-    // Crea el gráfico de estadísticas de usuarios
-    let userStatsChart = new Chart('userStatsChart', {
-      type: 'bar',
-      data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-        datasets: [{
-          label: 'Usuarios',
-          data: [50, 60, 70, 80, 90],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'month'
+            }
+          },
           y: {
             beginAtZero: true
           }
@@ -140,4 +160,43 @@ export class DashboardPage implements AfterViewInit {
     });
   }
 
+  createUserStatsChart() {
+    if (this.charges.length === 0) {
+      console.error('No charges data available.');
+      return;
+    }
+
+    const userStatsData = this.charges[0].map((charge: { created: number; amount: number; }) => ({
+      x: new Date(charge.created * 1000),
+      y: charge.amount / 100 // Convertir a dólares si es necesario
+    }));
+
+    console.log('User stats data:', userStatsData)
+
+    new Chart('userStatsChart', {
+      type: 'bar',
+      data: {
+        datasets: [{
+          label: 'Cargos',
+          data: userStatsData,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day'
+            }
+          },
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 }

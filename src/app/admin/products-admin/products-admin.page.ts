@@ -5,6 +5,10 @@ import { ColDef, ColGroupDef } from 'ag-grid-community';
 import { ButtonEditRendererComponent } from 'src/app/components/render/button-edit.component';
 import { ProductosService } from 'src/app/services/productos.service';
 import { CrudProductsAdminPage } from '../crud-products-admin/crud-products-admin.page';
+import { AG_GRID_LOCALE_ES } from '@ag-grid-community/locale';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-products-admin',
@@ -12,6 +16,9 @@ import { CrudProductsAdminPage } from '../crud-products-admin/crud-products-admi
   styleUrls: ['./products-admin.page.scss'],
 })
 export class ProductsAdminPage implements OnInit {
+
+  localeText = AG_GRID_LOCALE_ES;
+
 
   frameworkComponents: any;
   gridOptions = {
@@ -114,6 +121,15 @@ export class ProductsAdminPage implements OnInit {
 
   async eliminar(data: any){
 
+  }
+
+  exportToExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.rowData);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Reporte de Pedidos');
+
+    /* Guarda el archivo */
+    XLSX.writeFile(wb, 'ReporteDePedidos.xlsx');
   }
 
   async mostrarCrud(product : any){

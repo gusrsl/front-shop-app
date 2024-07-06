@@ -12,7 +12,12 @@
             <ion-icon slot="start" name="create"></ion-icon>
             Nuevo
           </ion-button>
-          <ion-searchbar class="custom-searchbar" animated debounce="300" placeholder="Escriba aquí para filtrar los datos..." (ionChange)="updateFilter($event)" (ionClear)="updateFilter($event)"></ion-searchbar>      </ion-item>
+          <ion-button (click)="exportToExcel()" slot="start" size="small" class="btn-excel">
+            <ion-icon name="download-outline"></ion-icon>
+            <ion-label>EXCEL</ion-label>
+          </ion-button>
+          <ion-searchbar class="custom-searchbar" animated debounce="300" placeholder="Escriba aquí para filtrar los datos..." (ionChange)="updateFilter($event)" (ionClear)="updateFilter($event)"></ion-searchbar>
+        </ion-item>
       <ag-grid-angular
         style="width: 100%; height: 90%;"
         class="ag-theme-alpine  custom-grid"
@@ -22,6 +27,7 @@
         [pagination]="true"
         [components]="frameworkComponents"
         [rowClassRules]="rowClassRules"
+        [localeText]="localeText"
         >
       </ag-grid-angular>
     </ion-col>

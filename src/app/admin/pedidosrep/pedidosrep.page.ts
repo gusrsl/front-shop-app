@@ -6,6 +6,7 @@ import { PedidoService } from 'src/app/services/pedidos.service';
 import { ColDef, ColGroupDef, RowGroupingDisplayType } from 'ag-grid-community';
 import { ButtonStateRendererComponent } from 'src/app/components/render/button-state.component';
 import { LoadingController } from '@ionic/angular';
+import { AG_GRID_LOCALE_ES } from '@ag-grid-community/locale';
 
 @Component({
   selector: 'app-pedidosrep',
@@ -15,6 +16,7 @@ import { LoadingController } from '@ionic/angular';
 export class PedidosrepPage implements OnInit {
   @ViewChild('agGridTable', { static: false }) agGridTable!: ElementRef;
 
+  localeText = AG_GRID_LOCALE_ES;
 
   public defaultColDef: ColDef = {
     flex: 1,

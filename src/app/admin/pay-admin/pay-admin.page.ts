@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/paymentdata.service';
+import { 	AG_GRID_LOCALE_ES } from '@ag-grid-community/locale';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-pay-admin',
@@ -9,6 +13,9 @@ import { CartService } from 'src/app/services/paymentdata.service';
 export class PayAdminPage implements OnInit {
   paymentIntents: any;
   charges: any;
+  localeText = AG_GRID_LOCALE_ES;
+
+
 
   paymentIntentsColumnDefs = [
     { headerName: 'ID', field: 'id', sortable: true, filter: true },
@@ -31,7 +38,9 @@ export class PayAdminPage implements OnInit {
     flex: 1,
     minWidth: 100,
     resizable: true,
+
   };
+
 
   constructor(private cartService: CartService) { }
 
@@ -64,5 +73,23 @@ export class PayAdminPage implements OnInit {
 
   receiptUrlRenderer(params: any) {
     return `<a href="${params.value}" target="_blank">View Receipt</a>`;
+  }
+
+  exportToExcelCharges() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.charges.data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Reporte de Pedidos');
+
+    /* Guarda el archivo */
+    XLSX.writeFile(wb, 'ReporteDePedidos.xlsx');
+  }
+
+  exportToExcelIntents() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.paymentIntents.data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Reporte de Pedidos');
+
+    /* Guarda el archivo */
+    XLSX.writeFile(wb, 'ReporteDePedidos.xlsx');
   }
 }
