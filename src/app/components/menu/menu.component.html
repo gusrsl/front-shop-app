@@ -35,17 +35,14 @@
       <ion-menu-toggle auto-hide="false">
         <ion-item class="menu-item slide-in" (click)="navigateTo('/home')">
           <ion-icon name="home" slot="start"></ion-icon>
-            HOMES
+            Home
         </ion-item>
         <ion-item class="menu-item slide-in" (click)="navigateTo('/productos')">
           <ion-icon name="basket" slot="start"></ion-icon>
           Productos
         </ion-item>
 
-          <ion-item class="menu-item slide-in" (click)="navigateTo('/perfil')">
-            <ion-icon name="person" slot="start"></ion-icon>
-            Cuenta
-          </ion-item>
+
           <div *ngIf="!userData || (userData && userData.type !== 'admin')">
           <ion-item class="menu-item slide-in" (click)="navigateTo('/cartshop')">
             <ion-icon name="cart" slot="start"></ion-icon>
@@ -87,6 +84,10 @@
           <ion-item class="menu-item slide-in" (click)="navigateTo('/pedidos-user')">
             <ion-icon name="log-in" slot="start"></ion-icon>
             Pedidos
+          </ion-item>
+          <ion-item class="menu-item slide-in" (click)="navigateTo('/perfil')">
+            <ion-icon name="person" slot="start"></ion-icon>
+            Cuenta
           </ion-item>
         </div>
       </ion-menu-toggle>
