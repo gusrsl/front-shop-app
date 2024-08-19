@@ -15,50 +15,38 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  border-radius: 12px; /* Borde redondeado en toda la tarjeta */
+  overflow: hidden; /* Asegura que el contenido respete los bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar la tarjeta */
+
   .product-image {
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
+    height: 200px; /* Altura fija para uniformidad */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin distorsión */
+    object-position: center; /* Centra la imagen en el contenedor */
+    border-radius: 12px 12px 0 0; /* Borde redondeado en la parte superior */
+    background-color: #ffffff; /* Color de fondo para contraste */
   }
+
   ion-card-header {
     text-align: center;
+    padding: 0.5rem 1rem; /* Ajusta el padding para un mejor espaciado */
   }
+
   ion-card-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem; /* Asegura un buen espaciado interno */
   }
+
   .view-button {
     margin-top: 1rem;
+    width: 80%; /* Ajusta el ancho del botón para centrarlo dentro del card */
+    align-self: center; /* Centra el botón horizontalmente */
+    border-radius: 20px; /* Bordes redondeados para el botón */
+    text-align: center; /* Asegura que el texto esté centrado */
   }
 }
-
-.price-range-text {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 0.5rem;
-}
-
-.pagination-row {
-  margin-top: 2rem;
-  ion-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .text-center {
-    text-align: center;
-  }
-}
-
-
-
-.bold-large {
-  font-weight: bold;
-  font-size: larger;
-}
-
-

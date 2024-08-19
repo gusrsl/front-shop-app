@@ -20,19 +20,19 @@
 
     <ion-item>
       <ion-label>Subtotal</ion-label>
-      <ion-note slot="end">${{subtotal}}</ion-note>
+      <ion-note slot="end">${{ subtotal | number:'1.2-2' }}</ion-note>
     </ion-item>
     <ion-item>
       <ion-label>Descuento</ion-label>
-      <ion-note slot="end">${{discount}}</ion-note>
+      <ion-note slot="end">${{ discount | number:'1.2-2' }}</ion-note>
     </ion-item>
     <ion-item>
       <ion-label>Cargo de envío</ion-label>
-      <ion-note slot="end">${{shippingCharge}}</ion-note>
+      <ion-note slot="end">${{ shippingCharge | number:'1.2-2' }}</ion-note>
     </ion-item>
     <ion-item>
       <ion-label>Total</ion-label>
-      <ion-note slot="end">${{total}}</ion-note>
+      <ion-note slot="end">${{ total | number:'1.2-2' }}</ion-note>
     </ion-item>
   </ion-card>
 
