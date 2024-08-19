@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'Darmacio',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    cleartext: true, // Allow HTTP content
   },
 };
 

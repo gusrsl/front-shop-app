@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product.model';
 import { Storage } from '@ionic/storage-angular';
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { ProductService } from 'src/app/services/cartproduct.service';
 import { CartService } from 'src/app/services/paymentdata.service';
 
@@ -29,7 +29,9 @@ export class CartshopPage implements OnInit, OnDestroy {
     private storageIonic: Storage,
     private platform: Platform,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastController: ToastController,
+
   ) {}
 
   ngOnDestroy() {
@@ -115,7 +117,23 @@ export class CartshopPage implements OnInit, OnDestroy {
     return this.subtotal - this.discount + this.shippingCharge;
   }
 
-  proceedToPayment() {
+  async proceedToPayment() {
+    const usuario = localStorage.getItem('usuario');
+    
+    if (!usuario) {
+      // Mostrar toast alertando al usuario que debe iniciar sesión
+      const toast = await this.toastController.create({
+        message: 'Debe iniciar sesión para proceder al pago.',
+        duration: 2000,
+        position: 'top'
+      });
+      await toast.present();
+
+      // Redirigir al usuario a la página de inicio de sesión si no está autenticado
+      this.router.navigate(['login']);
+      return;
+    }
+  
     const cartData = {
       cart: this.cart,
       subtotal: this.subtotal,
@@ -123,6 +141,7 @@ export class CartshopPage implements OnInit, OnDestroy {
       shippingCharge: this.shippingCharge,
       total: this.total
     };
+    
     this.cartService.updateCartData(cartData);
     this.router.navigate(['payment']);
   }
