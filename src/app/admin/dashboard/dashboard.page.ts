@@ -167,7 +167,7 @@ export class DashboardPage implements AfterViewInit {
     }
 
     const userStatsData = this.charges[0].map((charge: { created: number; amount: number; }) => ({
-      x: new Date(charge.created * 1000),
+      x: new Date(charge.created),
       y: charge.amount / 100 // Convertir a dólares si es necesario
     }));
 

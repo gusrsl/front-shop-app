@@ -19,6 +19,10 @@ export class DescproductPage implements OnInit, AfterViewInit {
   tallas: number[] = [36, 38, 40, 42, 44];
   selectedTalla: number | undefined;
 
+  selectedColor: string | undefined;
+  availableColors: string[] = ['#000000', '#FFFFFF', '#808080']; // Negro, Blanco, Gris, Plateado, Marrón, Dorado
+  randomColors: string[] = [];
+
   constructor(
     private router: Router,
     private productosService: ProductosService,
@@ -28,6 +32,7 @@ export class DescproductPage implements OnInit, AfterViewInit {
   ) { }
 
   async ngOnInit() {
+    this.generateRandomColors();
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       const state = navigation.extras.state as { product: Product };
@@ -51,6 +56,20 @@ export class DescproductPage implements OnInit, AfterViewInit {
     } catch (error) {
       console.error('Error al obtener productos destacados:', error);
     }
+  }
+
+  generateRandomColors() {
+    this.randomColors = [];
+    while (this.randomColors.length < 3) {
+      const randomColor = this.availableColors[Math.floor(Math.random() * this.availableColors.length)];
+      if (!this.randomColors.includes(randomColor)) {
+        this.randomColors.push(randomColor);
+      }
+    }
+  }
+
+  selectColor(color: string) {
+    this.selectedColor = color;
   }
 
   ngAfterViewInit() {
