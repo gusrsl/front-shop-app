@@ -231,12 +231,15 @@ export class PaymentPage implements OnInit {
     const stripeResponseRaw = localStorage.getItem('stripeResponse');
     let stripeResponse: any = this.paymmentintent;
 
+    console.log('Usuario:', usuario);
+    console.log('Carrito:', cart);
+    console.log('Respuesta de Stripe:', stripeResponse);
+
     // Paso 2: Preparar los detalles del pedido
     const customerEmail = usuario.correo;
     const orderDetails = {
       orderId: stripeResponse.id,
-      product: cart?.product?.descripcion,
-      quantity: cart?.quantity,
+      cart: cart,
       price: stripeResponse.amount / 100,
       customerName: `${usuario.nombre} ${usuario.apellido}`,
       address: `${usuario.direccion}, ${usuario.ciudad}, ${usuario.pais}`
